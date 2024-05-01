@@ -92,7 +92,8 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 #################################################################################################################################
 # Startup Programs when the Shell or Terminal is Executed
 # Don't append "exec" before some programs in '.bashrc' or you can't launch your terminal and get logout in tty
-neofetch
+# neofetch (RIP neofetch 31 December 2015 - 26 April 2024)
+fastfetch
 
 
 #!/bin/sh
