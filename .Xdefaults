@@ -9,6 +9,7 @@ Xft.rgba: 	rgb
 
 ! Xcursor Theme Resources
 Xcursor.theme: 	BreezeX-RosePine-Linux
+Xcursor.size:	24
 
 ! special
 *.foreground:   #e0def4
