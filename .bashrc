@@ -34,13 +34,17 @@ alias tp-java='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-Java
 alias tp-c='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-C-Language'
 alias tp-cpp='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-C++-Language'
 alias tp-sh='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-Bash-Scripting'
-alias arrpc='node --trace-warnings ~/Downloads/Others/Discord\ Rich-Presence/arrpc/src'
+# alias arrpc='node --trace-warnings ~/Downloads/Others/Discord\ Rich-Presence/arrpc/src'
 alias tp-webg='cd /opt/lampp/htdocs/10123354/'
 alias tp-webx='cd /opt/lampp/htdocs/latihanSendiri/'
-alias controlFX='java --module-path $PATH_TO_FX --add-modules javafx.controls'
+alias controlFX17='java --module-path $PATH_TO_FX17 --add-modules javafx.controls'
+alias controlFX21='java --module-path $PATH_TO_FX21 --add-modules javafx.controls'
+# SILENT_JAVA_OPTIONS="$JDK_JAVA_OPTIONS"
+# unset JDK_JAVA_OPTIONS
+# alias java='java "$SILENT_JAVA_OPTIONS"'
 alias pingG='ping 8.8.8.8'
 alias grub-install-update='sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux --recheck'
-alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+# alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias pactree='pactree -c'
 alias pactrees='pactree -c -s'
 alias py='python3'
@@ -57,7 +61,7 @@ alias bspwmX='startx ~/.xinitrc bspwm'
 alias mctl='java -jar ~/Downloads/TLauncher-2.*/TLauncher-*.jar'
 alias tp-mctl='cd ~/Downloads/TLauncher-2.*/'
 alias vim='nvim'
-alias mcaselector='java --module-path $PATH_TO_FX --add-modules javafx.controls -jar ~/Downloads/TLauncher-2.*/mcaselector-*.jar'
+alias mcaselector='java --module-path $PATH_TO_FX21 --add-modules javafx.controls -jar ~/Downloads/TLauncher-2.*/mcaselector-*.jar'
 #################################################################################################################################
 # My Environment Variables Config
 MANPATH="${HOME}/.local/share/man:${MANPATH}"
@@ -76,8 +80,12 @@ export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
 eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 export PERL_CPANM_HOME=/tmp/cpanm_$USER
-export PATH_TO_FX="/usr/lib/jvm/java-17-openjdk/lib/javafx.base.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.controls.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.graphics.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx-swt.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.fxml.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.media.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.web.jar"
-export PATH_TO_FX_MODS='/usr/lib/jvm/java-17-openjdk/jmods/javafx.base.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.controls.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.fxml.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.graphics.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.media.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.swing.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.web.jmod'
+export PATH_TO_FX17="/usr/lib/jvm/java-17-openjdk/lib/javafx.base.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.controls.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.graphics.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx-swt.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.fxml.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.media.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.web.jar"
+export PATH_TO_FX_MODS17='/usr/lib/jvm/java-17-openjdk/jmods/javafx.base.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.controls.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.fxml.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.graphics.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.media.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.swing.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.web.jmod'
+export PATH_TO_FX21="/usr/lib/jvm/java-21-openjdk/lib/javafx.base.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.controls.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.graphics.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx-swt.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.fxml.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.media.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.web.jar"
+export PATH_TO_FX_MODS21='/usr/lib/jvm/java-21-openjdk/jmods/javafx.base.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.controls.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.fxml.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.graphics.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.media.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.swing.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.web.jmod'
+export PATH="/usr/lib/colorgcc/bin:$PATH"
+export CCACHE_PATH="/usr/bin"
 # export PATH="/var/lib/flatpak/exports/share:/root/.local/share:$PATH"
 # export XDG_DATA_DIRS="/root/.local/share:$XDG_DATA_DIRS"
 # export LDFLAGS="$(echo ${LDFLAGS} | sed -e 's|[[:space:]][[:space:]]|[[:space:]]|g' -e 's|\n||g')"
@@ -94,4 +102,6 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 # Don't append "exec" before some programs in '.bashrc' or you can't launch your terminal and get logout in tty
 # neofetch (RIP neofetch 31 December 2015 - 26 April 2024)
 fastfetch
-
+eval "$(rbenv init -)"
+# (cat ~/.cache/wal/sequences &)
+# source ~/.cache/wal/colors-tty.sh
