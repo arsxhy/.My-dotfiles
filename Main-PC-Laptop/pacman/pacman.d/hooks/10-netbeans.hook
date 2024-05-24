@@ -1,0 +1,10 @@
+[Trigger]
+Type = Path
+Operation = Install
+Operation = Upgrade
+Target = usr/etc/netbeans.conf
+
+[Action]
+Description = Updating netbeans.conf
+When = PostTransaction
+Exec = /usr/bin/sed -i -E 's/netbeans_default_options="(.*)"/netbeans_default_options="\1 -J-Dawt.useSystemAAFontSettings=on -J-Dswing.aatext=true --fontsize 15"/g' /usr/etc/netbeans.conf

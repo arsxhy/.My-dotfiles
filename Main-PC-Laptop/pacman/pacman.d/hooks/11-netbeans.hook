@@ -1,0 +1,11 @@
+[Trigger]
+Type = Path
+Operation = Install
+Operation = Upgrade
+Target = /opt/netbeans-21/etc/netbeans.conf
+
+[Action]
+Description = Updating netbeans.conf
+When = PostTransaction
+Exec = /usr/bin/sed -i -E 's/netbeans_default_options="(.*)"/netbeans_default_options="\1 -J-Dawt.useSystemAAFontSettings=on -J-Dswing.aatext=true --fontsize 15"/g' /opt/netbeans-21/etc/netbeans.conf
+
