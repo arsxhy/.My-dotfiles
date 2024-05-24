@@ -4,6 +4,7 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
+
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -12,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: FontAwesome, Ionicons 10
+font pango:JetBrainsMono Nerd Font, Font Awesome 9
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -22,20 +23,84 @@ font pango: FontAwesome, Ionicons 10
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+# PENTING: 
+# Kalau mau update wallpaper betterlockscreen, pakai command betterlockscreen -u PATH to Image
+# Jangan di Konfigurasi i3 secara langsung karena bakal memakan banyak RAM saat startup.
+# Ini dikarenakan program betterlockscreen meng-cached image nya terlebih dahulu.
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --time-str="%H:%M:%S"--image="/home/arsxhy/Pictures/Wallpapers/Kok-Bisa-Wall/wallpaper-blackhole\ blue.png" --nofork -f -t
+exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l dim
+# bindsym Ctrl+Mod1+l exec --no-startup-id "i3lock -i /home/arsxhy/Pictures/Wallpapers/autumn-october-2023-release-by-sulcetech-1920-x-1080-v0.png" &
+# exec --no-startup-id  'xautolock -detectsleep -time 10 -locker \"i3lock -n -f -i /home/arsxhy/Pictures/Wallpapers/Kok-Bisa-Wall/wallpaper-blackhole\ blue.png -t\"'
+exec --no-startup-id xidlehook --not-when-audio --not-when-fullscreen --timer 600 "betterlockscreen -l dim" "" &
+# exec --no-startup-id xidlehook --not-when-audio --not-when-fullscreen --timer 360 "i3lock -n -f -i /home/arsxhy/Pictures/Wallpapers/Kok-Bisa-Wall/wallpaper-blackhole\ blue.png -t"
 
-set $i3lockwall i3lock -i ~/Pictures/Wallpapers/Arch-Linux-1920x1080.png -t
+# System Control
+set $Locker betterlockscreen -l dim && sleep 1
+# set $Locker i3lock -i "/home/arsxhy/Pictures/Wallpapers/Kok-Bisa-Wall/wallpaper-blackhole blue.png" -t && sleep 1
 
-# KEYBINDING TO LOck screen
-bindsym Control+Mod1+l exec "i3lock -i ~/Pictures/Wallpapers/Arch-Linux-1920x1080.png -t"
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
-# AUto lock the screen
-exec "xautolock -detectsleep -time 300 -locker \"i3lock -i ~/Pictures/Wallpapers/Arch-Linux-1920x1080.png -t\""
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
+
+# Quick Launcher for TLauncher
+set $mctl java -jar ~/Downloads/TLauncher-2.*/TLauncher-*.jar
+# bindsym $mod+m exec $mctl
+
+# Quick Launcher
+set $mode_launcher Launch: [V]ivaldi [D]iscord [F]irefox [N]etbeans [S]team [T]elegram [M]CTL [C]ode(VS Code)
+mode "$mode_launcher" {
+#    bindsym v exec --no-startup-id vivaldi-stable --proxy-auto-detect 
+#    bindsym v exec --no-startup-id vivaldi-stable --proxy-server="dns://localhost:5300"
+    bindsym v exec --no-startup-id vivaldi-stable
+    bindsym d exec --no-startup-id vesktop
+    bindsym f exec --no-startup-id firefox
+    bindsym n exec --no-startup-id /opt/netbeans-21/bin/netbeans
+    bindsym s exec --no-startup-id steam
+    bindsym t exec --no-startup-id telegram-desktop
+    bindsym m exec --no-startup-id $mctl
+    bindsym c exec --no-startup-id code
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+o mode "$mode_launcher"
+
+# Assign Application into specific Workspace
+assign [class="^Vivaldi-stable$"] → 1
+assign [class ="^firefox$"] → 1
+assign [class="^Spotube$"] → 1
+assign [class="^Code$"] → 2
+assign [class="^Apache NetBeans IDE 16$"] → 2
+assign [class="^Apache NetBeans IDE 21$"] → 2
+assign [class="^jetbrains-idea-ce$"] → 2
+assign [class="^vesktop$"] → 3
+assign [class="^zoom$"] → 3
+assign [class="^TelegramDesktop$"] → 3
+assign [class="^by-gdev-Main$"] → 4
+assign [class="^org-tlauncher-tlauncher-rmo-TLauncher$"] → 4
+assign [class="^steam$"] → 4
+assign [class="^Lutris$"] → 4
+assign [class="^heroic$"] → 4
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -48,25 +113,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# Handle backlight.
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
-
-# PLAYER controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-# Screenshots in files
-bindsym Print exec --no-startup-id maim --format=png "/home/$USER/Pictures/Screenshots/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-all.png"
-bindsym $mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-current.png"
-bindsym Shift+Print exec --no-startup-id maim --format=png --select "/home/$USER/Pictures/Screenshots/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-selected.png"
-
-# Screenshots in clipboards
-bindsym Ctrl+Print exec --no-startup-id maim --format=png | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --format=png --select | xclip -selection clipboard -t image/png
+# use brightnessctl to adjust backlight
+bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl set +10%"
+bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl set 10%-"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -76,33 +125,74 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+
+# start an editor for i3-wm
+bindsym $mod+z exec --no-startup-id i3-sensible-editor
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# i3-border configurations
-default_border pixel 2
-
-default_floating_border pixel 2
-
-# i3-window border configurations
-
-for_window [class="^.*"] border pixel 2
-
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run -i -p "Launch:" -nb "#232136" -sb "#eb6f92" -sf "#e0def4" -fn "JetBrainsMono Nerd Font:bold:pixelsize=13"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -p "Launch:" -nb "#232136" -sb "#eb6f92" -sf "#e0def4" -fn "JetBrainsMono Nerd Font:bold:pixelsize=13"' 
+
+# Window Title Alignment
+# title_align left|center|right
+title_align center
+
+# Window Title Icon
+# title_window_icon yes|no|toggle
+# title_window_icon <padding|toggle> <px>
+for_window [all] title_window_icon padding 3px
+
+# Default Border
+# default_border normal|none|pixel <px>
+default_border pixel 3
+
+# Focus Follows Mouse
+# focus_follows_mouse yes|no
+focus_follows_mouse no
+
+# Focus Wrapping
+# focus_wrapping yes|no|force|workspace
+focus_wrapping no
+
+# Workspace auto back-and-forth
+# workspace_auto_back_and_forth yes|no
+# workspace_auto_back_and_forth yes
+
+# Pop-up during fullscreen mode
+# popup_during_fullscreen smart|ignore|leave_fullscreen
+popup_during_fullscreen smart
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+# i3-wm default inner gaps
+gaps inner 10
+
+# read 1 character and mark the current window with this character
+bindsym $mod+n exec --no-startup-id i3-input -F 'mark %s' -l 1 -P 'Mark: '
+
+# read 1 character and go to the window with the character
+bindsym $mod+m exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
+# Unmark Windows/Container
+bindsym $mod+b exec --no-startup-id i3-input -F 'unmark %s' -l 1 -P 'Unmark: '
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -111,10 +201,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -123,21 +213,60 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Ctrl+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+Ctrl+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+
+# Screenshot Utility (Directly to Clipboard)
+bindsym $mod+Print exec --no-startup-id spectacle -bc
+bindsym --release $mod+Shift+Print exec spectacle -brc
+bindsym $mod+Ctrl+Print exec --no-startup-id spectacle -bac
+
+# Screenshot Utility (Save to PNG Format)
+set $Print Print
+bindsym $mod+i exec spectacle -l
+bindsym $Print exec --no-startup-id  spectacle -b
+bindsym --release Shift+Print  exec spectacle -br
+bindsym Ctrl+Print exec spectacle -ba
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+bindsym $mod+t split toggle
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+
+# Floating Window Rules
+for_window [window_role="About"] floating enable
+for_window [window_role="Organizer"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="page-info"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="toolbox"] floating enable
+for_window [window_role="webconsole"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+# Floating Window Rules for Specific Apps
+for_window [class="^vlc$" title="(?i)Help"] floating enable
+for_window [class="^zoom$" title="(?i)Settings"] floating enable
+for_window [class="(?i)Xfce4-About"] floating enable
+for_window [class="^spectacle$"] floating enable
+for_window [class="^Kvantum Manager$"] floating enable
+for_window [class="^Blueman-manager$"] floating enable
+for_window [class="^Nm-connection-editor$"] floating enable
+for_window [class="^drkonqi$"] floating enable
+for_window [class="^Lightdm-settings$"] floating enable
+for_window [class="^ark$"] floating enable
+for_window [title="Task Manager - Vivaldi"] floating enable
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -146,151 +275,10 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus child
 
-# Press $mod+o followed by either f, t, v Escape or Return to launch firefox,
-# thunar or return to the default mode, respectively.
-set $mode_launcher Launch: [d]iscord [f]irefox [t]hunar [v]ivaldi
-bindsym $mod+o mode "$mode_launcher"
-
-mode "$mode_launcher" {
-         bindsym f exec --no-startup-id firefox
-         bindsym t exec --no-startup-id thunar
-         bindsym v exec --no-startup-id vivaldi-stable
-         bindsym d exec --no-startup-id discord
-
-         bindsym Escape mode "default"
-         bindsym Return mode "default"
-}
-
-# floating pop up automatically
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
-
-# sticky floating window popup
-for_window [title="Battery Warning"] sticky enable
-
-# i3-gaps configuration
-
-set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_verti Vertical Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_horiz Horizontal Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_top Top Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_right Right Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_bottom Bottom Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_left Left Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym v      mode "$mode_gaps_verti"
-        bindsym h      mode "$mode_gaps_horiz"
-        bindsym t      mode "$mode_gaps_top"
-        bindsym r      mode "$mode_gaps_right"
-        bindsym b      mode "$mode_gaps_bottom"
-        bindsym l      mode "$mode_gaps_left"
-        bindsym Return mode "$mode_gaps"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "$mode_gaps"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "$mode_gaps"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_verti" {
-        bindsym plus  gaps horizontal current plus 5
-        bindsym minus gaps horizontal current minus 5
-        bindsym 0     gaps horizontal current set 0
-
-        bindsym Shift+plus  gaps horizontal all plus 5
-        bindsym Shift+minus gaps horizontal all minus 5
-        bindsym Shift+0     gaps horizontal all set 0
-
-        bindsym Return mode "$mode_gaps"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_horiz" {
-        bindsym plus  gaps vertical current plus 5
-        bindsym minus gaps vertical current minus 5
-        bindsym 0     gaps vertical current set 0
-
-        bindsym Shift+plus  gaps vertical all plus 5
-        bindsym Shift+minus gaps vertical all minus 5
-        bindsym Shift+0     gaps vertical all set 0
-
-        bindsym Return mode "$mode_gaps"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_top" {
-        bindsym plus  gaps top current plus 5
-        bindsym minus gaps top current minus 5
-        bindsym 0     gaps top current set 0
-
-        bindsym Shift+plus  gaps top all plus 5
-        bindsym Shift+minus gaps top all minus 5
-        bindsym Shift+0     gaps top all set 0
-
-        bindsym Return mode "$mode_gaps"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_right" {
-        bindsym plus  gaps right current plus 5
-        bindsym minus gaps right current minus 5
-        bindsym 0     gaps right current set 0
-
-        bindsym Shift+plus  gaps right all plus 5
-        bindsym Shift+minus gaps right all minus 5
-        bindsym Shift+0     gaps right all set 0
-
-        bindsym Return mode "$mode_gaps"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_bottom" {
-        bindsym plus  gaps bottom current plus 5
-        bindsym minus gaps bottom current minus 5
-        bindsym 0     gaps bottom current set 0
-
-        bindsym Shift+plus  gaps bottom all plus 5
-        bindsym Shift+minus gaps bottom all minus 5
-        bindsym Shift+0     gaps bottom all set 0
-
-        bindsym Return mode "$mode_gaps"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_left" {
-        bindsym plus  gaps left current plus 5
-        bindsym minus gaps left current minus 5
-        bindsym 0     gaps left current set 0
-
-        bindsym Shift+plus  gaps left all plus 5
-        bindsym Shift+minus gaps left all minus 5
-        bindsym Shift+0     gaps left all set 0
-
-        bindsym Return mode "$mode_gaps"
-        bindsym Escape mode "default"
-}
+# Focus to Urgent Workspace
+bindsym $mod+x [urgent=latest] focus workspace
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -318,16 +306,16 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2; workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3; workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4; workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5; workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6; workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7; workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10; workspace number $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -335,24 +323,6 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
-set $Locker i3lock && sleep 1
-
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+Pause mode "$mode_system"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -362,10 +332,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym h resize grow width 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym l resize shrink width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -379,51 +349,88 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-# resize window  
 bindsym $mod+r mode "resize"
 
-# class                 border  bground text    indicator child_border
-client.focused          #4C7899 #285577 #FFFFFF #2E9EF4   #285577
-client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
-client.unfocused        #333333 #222222 #888888 #292D2E   #222222
-client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+# i3-WM Color Configuration
+# class                 border  backgr. text    indicator child_border
+# client.focused          #009688 #008376 #ffffff #00FFE6   #008376
+# client.focused_inactive #333333 #5F676A #ffffff #484e50   #5F676A
+# client.unfocused        #444444 #333333 #888888 #292d2e   #333333
+# client.urgent           #2f343a #900000 #ffffff #900000   #900000
+# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
-client.background       #FFFFFF
+# client.background       #ffffff
+# set primary Rosé Pine Moon colorscheme colors
+set $base           #232136
+set $surface        #2a273f
+set $overlay        #393552
+set $muted          #6e6a86
+set $subtle         #908caa
+set $text           #e0def4
+set $love           #eb6f92
+set $urgent	    #ff2020
+set $gold           #f6c177
+set $rose           #ea9a97
+set $pine           #3e8fb0
+set $foam           #9ccfd8
+set $iris           #c4a7e7
+set $highlightlow   #2a283e
+set $highlightmed   #44415a
+set $highlighthigh  #56526e
+
+# Theming border and Windows --------------
+# target                 title     bg    text   indicator  border
+client.focused           $rose     $base $text  $rose      $rose
+client.focused_inactive  $text     $base $text  $subtle    $surface
+client.unfocused         $text     $base $text  $overlay   $overlay
+client.urgent            $text     $base $text  $urgent    $urgent
+client.placeholder       $base     $base $text  $overlay   $overlay
+client.background        $base
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  colors {
-    background #2D2D34
-    statusline #FFFFFF
-    separator  #B7B7B7
+        status_command i3status -c ~/.config/i3status/i3status.conf
+	font pango:JetBrainsMono Nerd Font, Font Awesome 8
+	position top
+	separator_symbol "|"
+	# i3bar_command --transparency
 
-    focused_workspace  #4C7899 #285577 #FFFFFF
-    active_workspace   #313A44 #2D2D34 #FFFFFF
-    inactive_workspace #313A44 #2D2D34 #888888
-    urgent_workspace   #2F343A #900000 #FFFFFF
-    binding_mode       #2F343A #900000 #FFFFFF
- } 
-        status_command i3status --config ~/.config/i3status/i3status.conf
-        # i3bar Transparency
-        # i3bar_command i3bar --transparency
-        # Position of the i3bar top|bottom
-        position top
-        # i3status font
-        font pango: FontAwesome, Ionicons 10
-        # Height in pixels
-        height 20
+	colors {
+	# background <color>
+	# statusline <color>
+	# separator <color>
 
+	# <colorclass> <border> <background> <text>
+	background $base
+        statusline $text
+        separator $rose
+
+        focused_workspace  $rose $love $text
+        active_workspace   $rose $love $text
+        inactive_workspace $surface $overlay $text
+        urgent_workspace   $love $urgent $text
+        binding_mode       $overlay $urgent $text
+	}
 }
 
+exec_always --no-startup-id picom
+# exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/autumn-october-2023-release-by-sulcetech-3840-x-2160-v0.jpg
+# exec_always --no-startup-id feh --bg-scale /home/arsxhy/Downloads/Bahan-bahan\ ganti\ Themes/Rose-Pines/wallpapers/background.jpg
+exec_always --no-startup-id feh --bg-scale '/home/arsxhy/.config/variety/Favorites/0d63f9d1-105f-4cba-adf9-d3c9f1632751.jpg'
+# Kok Bisa Wall
+# exec_always --no-startup-id feh --bg-scale /home/arsxhy/Pictures/Wallpapers/Kok-Bisa-Wall/thumbnail-Apa\ Rasanya\ Ada\ di\ Dimensi\ Lain-01.png
+# exec_always --no-startup-id feh --bg-scale /home/arsxhy/Pictures/Wallpapers/Kok-Bisa-Wall/poster-indonesia\ 2145-169\ desktop.png
+# exec_always --no-startup-id feh --bg-scale /home/arsxhy/Pictures/Wallpapers/Kok-Bisa-Wall/wallpaper-blackhole\ blue.jpg
+# exec_always --no-startup-id feh --bg-scale /home/arsxhy/Pictures/Wallpapers/Kok-Bisa-Wall/wallpaper-blackhole.jpg
+# exec_always --no-startup-id feh --bg-scale /home/arsxhy/Pictures/Wallpapers/Kok-Bisa-Wall/wallpaper-galaxy\ purple.jpg
+# exec_always --no-startup-id /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+# exec_always --no-startup-id dbus-update-activation-environment --all 
+# exec_always --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
+exec_always --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+exec_always --no-startup-id dunst
+# exec_always --no-startup-id clight --no-auto-calib --no-dimmer
+# exec --no-startup-id firewall-applet 
+# exec --no-startup-id nm-applet 
+exec_always --no-startup-id blueman-applet
 
-exec_always nitrogen --restore
-exec picom
-exec pa-applet
-exec firewall-applet
-exec blueman-applet
-exec system-config-printer-applet
-exec --no-startup-id i3-battery-popup -n -i /usr/share/icons/Papirus-Dark/symbolic/status/battery-level-0-symbolic.svg -s ~/.config/i3/i3-battery-popup/android_low_battery.wav -t 2m -L 20 -m "Warning: Battery is getting low!"
-exec --no-startup-id corectrl
-exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
