@@ -1,0 +1,19 @@
+[Desktop Entry]
+Categories=Game;
+Comment[en_US]=The Best Minecraft Launcher
+Comment=The Best Minecraft Launcher
+Exec=java -jar /home/arsxhy/Downloads/TLauncher-2.895/TLauncher-2.895.jar
+GenericName[en_US]=
+GenericName=
+Icon=/home/arsxhy/Downloads/TLauncher-2.895/tlauncher.svg
+MimeType=application/java-archive;
+Name[en_US]=TLauncher
+Name=TLauncher
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=2.924
+X-KDE-SubstituteUID=false
+X-KDE-Username=
