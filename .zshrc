@@ -16,6 +16,10 @@ fi
 if [[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]]; then
   source /usr/share/doc/pkgfile/command-not-found.zsh
 fi
+# nvm (node version manager) init.sh
+if [[ -e /usr/share/nvm/init-nvm.sh ]]; then
+  source /usr/share/nvm/init-nvm.sh
+fi
 
 # My Aliases Config
 alias ls='lsd -la1hF --color=auto'
@@ -72,6 +76,7 @@ LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:c
 export LS_COLORS
 export MANPAGER
 export PAGER
+# export QT_QPA_PLATFORM="wayland;xcb"
 export FZF_DEFAULT_OPTS="
 	--color=fg:#908caa,bg:#232136,hl:#ea9a97
 	--color=fg+:#e0def4,bg+:#393552,hl+:#ea9a97
@@ -89,7 +94,11 @@ export PATH_TO_FX17="/usr/lib/jvm/java-17-openjdk/lib/javafx.base.jar:/usr/lib/j
 export PATH_TO_FX_MODS17='/usr/lib/jvm/java-17-openjdk/jmods/javafx.base.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.controls.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.fxml.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.graphics.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.media.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.swing.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.web.jmod'
 export PATH_TO_FX21="/usr/lib/jvm/java-21-openjdk/lib/javafx.base.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.controls.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.graphics.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx-swt.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.fxml.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.media.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.web.jar"
 export PATH_TO_FX_MODS21='/usr/lib/jvm/java-21-openjdk/jmods/javafx.base.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.controls.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.fxml.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.graphics.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.media.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.swing.jmod:/usr/lib/jvm/java-21-openjdk/jmods/javafx.web.jmod'
+export JAVA_HOME="/usr/lib/jvm/default"
+export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="/usr/lib/colorgcc/bin:$PATH"
+export NODE_PATH="/usr/lib/node_modules"
+export PATH="$PATH:$NODE_PATH"
 export CCACHE_PATH="/usr/bin"
 # export PATH="/var/lib/flatpak/exports/share:/root/.local/share:$PATH"
 # export XDG_DATA_DIRS="/root/.local/share:$XDG_DATA_DIRS"
