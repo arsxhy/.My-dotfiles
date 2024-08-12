@@ -34,6 +34,7 @@ alias tp-py='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-Python
 alias tp-java='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-Java'
 alias tp-c='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-C-Language'
 alias tp-cpp='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-C++-Language'
+alias tp-rs='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-Rust/'
 alias tp-sh='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-Bash-Scripting'
 alias tp-zsh='cd /home/arsxhy/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-Zsh-Scripting'
 # alias arrpc='node --trace-warnings ~/Downloads/Others/Discord\ Rich-Presence/arrpc/src'
@@ -45,7 +46,7 @@ alias controlFX21='java --module-path $PATH_TO_FX21 --add-modules javafx.control
 # unset JDK_JAVA_OPTIONS
 # alias java='java "$SILENT_JAVA_OPTIONS"'
 alias pingG='ping 8.8.8.8'
-alias grub-install-update='sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux --recheck'
+# alias grub-install-update='sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux --recheck'
 # alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias pactree='pactree -c'
 alias pactrees='pactree -c -s'
@@ -103,6 +104,7 @@ export CCACHE_PATH="/usr/bin"
 # export PATH="/var/lib/flatpak/exports/share:/root/.local/share:$PATH"
 # export XDG_DATA_DIRS="/root/.local/share:$XDG_DATA_DIRS"
 # export LDFLAGS="$(echo ${LDFLAGS} | sed -e 's|[[:space:]][[:space:]]|[[:space:]]|g' -e 's|\n||g')"
+# export CMAKE_BUILD_PARALLEL_LEVEL=8
 # export all_proxy="dns://localhosr:5300"
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
