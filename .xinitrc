@@ -13,24 +13,51 @@ fi
 # exec /etc/X11/xinit/xinitrc.d/50-systemd-user.sh &
 # exec dbus-update-activation-environment --all &
 # /usr/lib/polkit-kde-authentication-agent-1 &
-# exec firewall-applet &
+exec gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" &
+exec firewall-applet &
 exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 exec nm-applet &
 exec blueman-applet &
+exec corectrl &
 # exec sxhkd &
 # exec feh --bg-scale /usr/share/backgrounds/archlinux/awesome.png &
-# exec feh --bg-scale ~/Pictures/Wallpapers/autumn-october-2023-release-by-sulcetech-3840-x-2160-v0.jpg &
-exec feh --bg-scale /home/arsxhy/Downloads/Bahan-bahan\ ganti\ Themes/Rose-Pines/wallpapers/leafy-moon.png
+exec feh --bg-scale ~/Pictures/Wallpapers/archlinux-magenta-blue.png &
+# exec feh --bg-scale /home/arsxhy/Downloads/Bahan-bahan\ ganti\ Themes/Rose-Pines/wallpapers/leafy-moon.png
 xsetroot -cursor_name left_ptr &
 
 # Here i3 is kept as default
-session=${1:-i3}
+session=${1:-qtile}
 
 case $session in
-	i3|i3wm		) exec i3;;
 	qtile		) exec qtile start;;
-	bspwm		) exec bspwm;;
+	awesome		) exec awesome;;
+	Hyprland	) exec Hyprland;;
+#	i3|i3wm		) exec i3;;
+#	bspwm		) exec bspwm;;
 	
 	# No Known Session, Try to Run it as command
 	*		) exec $1;;
 esac
+
+# echo "Pilih Window Manager: "
+# echo "1. Qtile"
+# echo "2. AwesomeWM"
+# echo "3. Hyprland"
+
+# read wm_choice -p "Masukkan Nomor: "
+
+# case $wm_choice in
+#	1)
+#		exec qtile start
+#		;;
+#	2)
+#		exec awesome
+#		;;
+#	3)
+#		exec Hyprland
+#		;;
+#	*)
+#		echo "Pilihan tidak valid, memulai default (Qtile)"
+#		exec qtile start
+#		;;
+# esac
