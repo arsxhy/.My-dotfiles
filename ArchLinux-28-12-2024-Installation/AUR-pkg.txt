@@ -1,0 +1,8 @@
+bt-dualboot 1.0.1-3
+packettracer 8.2.2-1
+plymouth-theme-arch-logo-new 0.2-3
+plymouth-theme-archlinux 1.1-1
+python-clickgen1-debug 1.2.0-1
+rar 7.01-1
+rar-debug 7.01-1
+yay-debug 12.4.2-1
