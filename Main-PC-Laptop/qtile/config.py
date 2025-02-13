@@ -24,13 +24,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout, qtile, widget
+import os
+import subprocess
+from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
+from libqtile.utils import send_notification
 
 mod = "mod4"
-terminal = guess_terminal()
+terminal = "kitty"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -77,7 +79,25 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawn("rofi -modes 'drun,run,clipboard:greenclip print' -show drun -run-command '{cmd}'"), desc="Launch a command using rofi"),
+    # Brightness Settings
+    Key([],"XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%"), desc="Brightness Up using brightnessctl"),
+    Key([],"XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-"), desc="Brightness Down using brightnessctl"),
+    # Volume Settings
+    Key([],"XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"), desc="Volume Up"),
+    Key([],"XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"), desc="Volume Down"),
+    Key([],"XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"), desc="Volume Mute"),
+    # Screenshot Utility (Directly to Clipboard)
+    Key([mod], "Print", lazy.spawn("spectacle -bc"), desc="Screenshot Utility using Spectacle Fullscreen"),
+    Key([mod, "shift"], "Print", lazy.spawn("spectacle -brc"), desc="Screenshot Utility using Spectacle Area"),
+    Key([mod, "control"], "Print", lazy.spawn("spectacle -bac"), desc="Screenshot Utility using Spectacle Window"),
+    # Screenshot Utility (Save to PNG Format)
+    Key([mod], "i", lazy.spawn("spectacle -l"), desc="Spectacle GUI Config"),
+    Key([], "Print", lazy.spawn("spectacle -b"), desc="Spectacle Fullscreen"),
+    Key(["shift"], "Print", lazy.spawn("spectacle -br"), desc="Spectacle Area"),
+    Key(["control"], "Print", lazy.spawn("spectacle -ba"), desc="Spectacle Window"),
+    # Pinch to zoom in/out
+    
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -115,14 +135,19 @@ for i in groups:
             ),
             # Or, use below if you prefer not to switch to that group.
             # # mod + shift + group number = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
+            # Key(
+            #   [mod, "shift"], 
+            #   i.name, 
+            #   lazy.window.togroup(i.name),
+            #   desc="move focused window to group {}".format(i.name)
+            # ),
         ]
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=3),
     layout.Max(),
+    # layout.Plasma(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -145,7 +170,11 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        # For Wallpaper, it is good to match your Monitor Resolution Size
+        wallpaper=os.path.join(
+            os.path.expanduser("~"), "Pictures/Wallpapers/Iki-Hiyori-chan.jpg"), 
+        wallpaper_mode="fill",
+        top=bar.Bar( 
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(),
@@ -157,13 +186,12 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                widget.TextBox("arsxhy config", foreground="#0ff0ff", name="default"),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+                widget.Clock(format="%A, %d-%m-%Y, %R"),
                 # widget.StatusNotifier(),
                 widget.Systray(),
-                widget.Clock(format="%A, %d-%m-%Y, %R"),
-                widget.QuickExit(),
+                # widget.QuickExit(),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
@@ -213,7 +241,7 @@ auto_minimize = True
 wl_input_rules = None
 
 # xcursor theme (string or None) and size (integer) for Wayland backend
-wl_xcursor_theme = None
+wl_xcursor_theme = "Bibata-Modern-Classic"
 wl_xcursor_size = 24
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
@@ -225,3 +253,16 @@ wl_xcursor_size = 24
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+# Startup Once
+@hook.subscribe.startup_once
+def autostart():
+    script = os.path.expanduser("~/.config/qtile/autostart.sh")
+    subprocess.run([script])
+
+# Run Every Startup of Qtile
+
+# Run Every Restart of Qtile
+@hook.subscribe.restart
+def run_every_restart():
+    send_notification("qtile", "Restarting...")
