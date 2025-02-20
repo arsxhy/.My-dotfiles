@@ -1,0 +1,127 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>Microsoft.PowerShell.Commands.PSRepositoryItemInfo</T>
+      <T>System.Management.Automation.PSCustomObject</T>
+      <T>System.Object</T>
+    </TN>
+    <MS>
+      <S N="Name">UpdateFirefoxDevEdition</S>
+      <S N="Version">1.0.6</S>
+      <S N="Type">Script</S>
+      <S N="Description">The script installs or updates Mozilla Firefox Developer Edition browser on Windows.</S>
+      <S N="Author">Fabrice Sanga</S>
+      <S N="CompanyName">sangafabrice</S>
+      <S N="Copyright">© 2022 SangaFabrice. All rights reserved.</S>
+      <DT N="PublishedDate">2022-09-21T16:43:31+07:00</DT>
+      <Obj N="InstalledDate" RefId="1">
+        <DT>2024-11-10T10:43:47.9660572+07:00</DT>
+        <MS>
+          <Obj N="DisplayHint" RefId="2">
+            <TN RefId="1">
+              <T>Microsoft.PowerShell.Commands.DisplayHintType</T>
+              <T>System.Enum</T>
+              <T>System.ValueType</T>
+              <T>System.Object</T>
+            </TN>
+            <ToString>DateTime</ToString>
+            <I32>2</I32>
+          </Obj>
+        </MS>
+      </Obj>
+      <Nil N="UpdatedDate" />
+      <URI N="LicenseUri">https://github.com/sangafabrice/reg-cli/blob/main/LICENSE.md</URI>
+      <URI N="ProjectUri">https://github.com/sangafabrice/reg-cli/tree/firefoxdev</URI>
+      <URI N="IconUri">https://rawcdn.githack.com/sangafabrice/reg-cli/fa46f4d6bb7df0d1d507d8a9f2d0e0f60f2bc454/icon.png</URI>
+      <Obj N="Tags" RefId="3">
+        <TN RefId="2">
+          <T>System.Object[]</T>
+          <T>System.Array</T>
+          <T>System.Object</T>
+        </TN>
+        <LST>
+          <S>firefox</S>
+          <S>dev-edition</S>
+          <S>update</S>
+          <S>browser</S>
+          <S>PSScript</S>
+        </LST>
+      </Obj>
+      <Obj N="Includes" RefId="4">
+        <TN RefId="3">
+          <T>System.Collections.Hashtable</T>
+          <T>System.Object</T>
+        </TN>
+        <DCT>
+          <En>
+            <S N="Key">DscResource</S>
+            <Obj N="Value" RefId="5">
+              <TNRef RefId="2" />
+              <LST />
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Function</S>
+            <Ref N="Value" RefId="5" />
+          </En>
+          <En>
+            <S N="Key">Command</S>
+            <Ref N="Value" RefId="5" />
+          </En>
+          <En>
+            <S N="Key">Cmdlet</S>
+            <Ref N="Value" RefId="5" />
+          </En>
+          <En>
+            <S N="Key">RoleCapability</S>
+            <Ref N="Value" RefId="5" />
+          </En>
+          <En>
+            <S N="Key">Workflow</S>
+            <Ref N="Value" RefId="5" />
+          </En>
+        </DCT>
+      </Obj>
+      <Nil N="PowerShellGetFormatVersion" />
+      <S N="ReleaseNotes">Remove Select-NonEmptyObject from script.</S>
+      <Obj N="Dependencies" RefId="6">
+        <TNRef RefId="2" />
+        <LST />
+      </Obj>
+      <S N="RepositorySourceLocation">https://www.powershellgallery.com/api/v2</S>
+      <S N="Repository">PSGallery</S>
+      <S N="PackageManagementProvider">NuGet</S>
+      <Obj N="AdditionalMetadata" RefId="7">
+        <TN RefId="4">
+          <T>System.Management.Automation.PSCustomObject</T>
+          <T>System.Object</T>
+        </TN>
+        <MS>
+          <S N="copyright">© 2022 SangaFabrice. All rights reserved.</S>
+          <S N="description">The script installs or updates Mozilla Firefox Developer Edition browser on Windows.</S>
+          <S N="requireLicenseAcceptance">False</S>
+          <S N="releaseNotes">Remove Select-NonEmptyObject from script.</S>
+          <S N="isLatestVersion">True</S>
+          <S N="isAbsoluteLatestVersion">True</S>
+          <S N="versionDownloadCount">2130</S>
+          <S N="downloadCount">2233</S>
+          <S N="packageSize">3624</S>
+          <S N="published">21/09/2022 16:43:31 +07:00</S>
+          <S N="created">21/09/2022 16:43:31 +07:00</S>
+          <S N="lastUpdated">08/11/2024 14:30:00 +07:00</S>
+          <S N="tags">firefox dev-edition update browser PSScript</S>
+          <S N="developmentDependency">False</S>
+          <S N="updated">2024-11-08T14:30:00Z</S>
+          <S N="NormalizedVersion">1.0.6</S>
+          <S N="Authors">Fabrice Sanga</S>
+          <S N="IsPrerelease">false</S>
+          <S N="ItemType">Script</S>
+          <S N="FileList">UpdateFirefoxDevEdition.nuspec|UpdateFirefoxDevEdition.ps1</S>
+          <S N="GUID">2b9f3f36-3644-44ab-aa3e-0febd015fae5</S>
+          <S N="CompanyName">sangafabrice</S>
+        </MS>
+      </Obj>
+      <S N="InstalledLocation">C:\Users\acer8\Documents\PowerShell\Scripts</S>
+    </MS>
+  </Obj>
+</Objs>

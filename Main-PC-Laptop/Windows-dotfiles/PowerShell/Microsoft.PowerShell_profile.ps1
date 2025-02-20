@@ -26,6 +26,7 @@ $env:PATH += ";C:\Users\acer8\Documents\PowerShell\Scripts"
 # Konfigurasi Alias Perintah
 Set-Alias -Name btop -Value "btop4win.exe"
 Set-Alias -Name vim -Value nvim
+Set-Alias -Name ncdu -Value "gdu_windows_amd64.exe"
 
 # Remove alias default bawaan
 Remove-Item Alias:ls
@@ -37,6 +38,10 @@ function yt-mp3 {
 
 function tp-cmd-alias {
 	cd "C:\Users\acer8\Documents\CMD\aliases"
+}
+
+function tp-kuliah {
+	cd "C:\Users\acer8\Documents\Kuliah"
 }
 
 function ls {
