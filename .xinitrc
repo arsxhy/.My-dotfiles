@@ -32,7 +32,7 @@ xsetroot -cursor_name left_ptr &
 exec gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" &
 
 # Here i3 is kept as default
-session=${1:-qtile}
+session=${1:-awesome}
 
 case $session in
 	qtile		) exec qtile start;;
