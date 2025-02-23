@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+
+name="arRPC Discord RPC Daemon"
+description="Discord Rich Presence Daemon for arRPC"
+command="/usr/bin/arrpc"
+command_background="yes"
+pidfile="/run/${RC_SVCNAME}.pid"
+
+depend() {
+      need net
+}
+
+start_pre() {
+      ebegin "Starting ${name}"
+}
+
+stop_post() {
+      eend $?
+}

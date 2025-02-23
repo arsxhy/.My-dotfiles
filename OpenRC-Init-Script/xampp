@@ -1,0 +1,33 @@
+#!/sbin/openrc-run
+
+name="XAMPP service"
+description="XAMPP (Apache + MariaDB + PHP + Perl)"
+command="/opt/lampp/lampp"
+command_args="start"
+command_background="yes"
+pidfile="/run/${RC_SVCNAME}.pid"
+
+depend() {
+    need localmount
+    use net
+}
+
+start() {
+    ebegin "Starting XAMPP"
+    "${command}" start
+    eend $?
+}
+
+stop() {
+    ebegin "Stopping XAMPP"
+    "${command}" stop
+    eend $?
+}
+
+restart() {
+    ebegin "Restarting XAMPP"
+    stop
+    start
+    eend $?
+}
+
