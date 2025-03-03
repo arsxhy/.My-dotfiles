@@ -26,13 +26,16 @@
 
 import os
 import subprocess
+from libqtile.backend.wayland import InputConfig
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import send_notification
+# from wayland import wl_input_rules
 
 mod = "mod4"
 terminal = "kitty"
+# wl_input = wl_input_rules
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -88,14 +91,14 @@ keys = [
     Key([],"XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"), desc="Volume Down"),
     Key([],"XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"), desc="Volume Mute"),
     # Screenshot Utility (Directly to Clipboard)
-    Key([mod], "Print", lazy.spawn("spectacle -bc"), desc="Screenshot Utility using Spectacle Fullscreen"),
-    Key([mod, "shift"], "Print", lazy.spawn("spectacle -brc"), desc="Screenshot Utility using Spectacle Area"),
-    Key([mod, "control"], "Print", lazy.spawn("spectacle -bac"), desc="Screenshot Utility using Spectacle Window"),
+    Key([mod], "Print", lazy.spawn("gnome-screenshot -c"), desc="Screenshot Utility using Spectacle Fullscreen"),
+    Key([mod, "shift"], "Print", lazy.spawn("gnome-screenshot -ac"), desc="Screenshot Utility using Spectacle Area"),
+    Key([mod, "control"], "Print", lazy.spawn("gnome-screenshot -wc"), desc="Screenshot Utility using Spectacle Window"),
     # Screenshot Utility (Save to PNG Format)
-    Key([mod], "i", lazy.spawn("spectacle -l"), desc="Spectacle GUI Config"),
-    Key([], "Print", lazy.spawn("spectacle -b"), desc="Spectacle Fullscreen"),
-    Key(["shift"], "Print", lazy.spawn("spectacle -br"), desc="Spectacle Area"),
-    Key(["control"], "Print", lazy.spawn("spectacle -ba"), desc="Spectacle Window"),
+    Key([mod], "i", lazy.spawn("gnome-screenshot -i"), desc="Spectacle GUI Config"),
+    Key([], "Print", lazy.spawn("gnome-screenshot"), desc="Spectacle Fullscreen"),
+    Key(["shift"], "Print", lazy.spawn("gnome-screenshot -a"), desc="Spectacle Area"),
+    Key(["control"], "Print", lazy.spawn("gnome-screenshot -w"), desc="Spectacle Window"),
     # Pinch to zoom in/out
     
 ]
@@ -238,11 +241,21 @@ reconfigure_screens = True
 auto_minimize = True
 
 # When using the Wayland backend, this can be used to configure input devices.
-wl_input_rules = None
+wl_input_rules = {
+        "type:keyboard": InputConfig(
+            kb_options="compose:ralt"
+        ),
+        "type:touchpad": InputConfig(
+            tap=True,
+            tap_button_map="lrm",
+            natural_scroll=True,
+            scroll_method="two_finger"
+        )
+}
 
 # xcursor theme (string or None) and size (integer) for Wayland backend
 wl_xcursor_theme = "Bibata-Modern-Classic"
-wl_xcursor_size = 24
+wl_xcursor_size = 20
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
