@@ -46,7 +46,7 @@ alias tp-webx='cd /opt/lampp/htdocs/latihanSendiri/'
 # unset JDK_JAVA_OPTIONS
 # alias java='java "$SILENT_JAVA_OPTIONS"'
 alias pingG='ping 8.8.8.8'
-alias grub-install-update='sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch_Linux --recheck'
+alias grub-install-update='sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux --recheck'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias pactree='pactree -c'
 alias pactrees='pactree -c -s'
@@ -84,8 +84,8 @@ PYTHONSTARTUP="$(python -m jedi repl)"
 # export LS_COLORS
 d=.dircolors
 test -r $d && eval "$(dircolors $d)"
-export GTK_THEME="Dracula"
-export ICON_THEME="Dracula"
+# export GTK_THEME="Artix-dark"
+# export ICON_THEME="Mint-L-Blue"
 export MANPAGER
 export PAGER
 # export SYSTEMD_PAGER
@@ -97,7 +97,7 @@ export ANI_CLI_PLAYER=''
 # export PATH="$PATH:$GEM_HOME/bin"
 # eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 # export PERL_CPANM_HOME=/tmp/cpanm_$USER
-export JDK_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+export JDK_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.toolkit.name=WLToolkit'
 # export PATH_TO_FX17="/usr/lib/jvm/java-17-openjdk/lib/javafx.base.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.controls.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.graphics.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx-swt.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.fxml.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.media.jar:/usr/lib/jvm/java-17-openjdk/lib/javafx.web.jar"
 # export PATH_TO_FX_MODS17='/usr/lib/jvm/java-17-openjdk/jmods/javafx.base.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.controls.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.fxml.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.graphics.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.media.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.swing.jmod:/usr/lib/jvm/java-17-openjdk/jmods/javafx.web.jmod'
 # export PATH_TO_FX21="/usr/lib/jvm/java-21-openjdk/lib/javafx.base.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.controls.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.graphics.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx-swt.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.fxml.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.media.jar:/usr/lib/jvm/java-21-openjdk/lib/javafx.web.jar"
@@ -144,3 +144,5 @@ fastfetch
 # eval "$(rbenv init -)"
 # (cat ~/.cache/wal/sequences &)
 # source ~/.cache/wal/colors-tty.sh
+source /usr/share/nvm/init-nvm.sh
+
