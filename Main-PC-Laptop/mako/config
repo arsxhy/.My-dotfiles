@@ -1,0 +1,3 @@
+# Mako Wayland Notification Config
+
+on-notify=exec makoctl menu wofi -d -p 'Choose Action: '
