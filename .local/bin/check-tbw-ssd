@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+# Perangkat SSD
+SSD_DEVICE="/dev/nvme0n1"
+
+# Pastikan smartctl tersedia
+SMARTCTL_CMD=$(command -v smartctl || echo "/usr/sbin/smartctl")
+if ! [ -x "$SMARTCTL_CMD" ]; then
+    echo "Error: smartctl tidak ditemukan. Pastikan sudah terinstal."
+    exit 1
+fi
+
+# Konstanta ukuran
+BYTES_PER_MB=1048576
+BYTES_PER_GB=1073741824
+BYTES_PER_TB=1099511627776
+
+# Jalankan smartctl untuk mendapatkan data SMART
+SMART_INFO=$(sudo "$SMARTCTL_CMD" -A "$SSD_DEVICE" 2>/dev/null)
+
+# Pastikan output valid
+if [[ -z "$SMART_INFO" ]]; then
+    echo "Error: Tidak dapat membaca data SMART dari $SSD_DEVICE."
+    exit 1
+fi
+
+# Ambil nilai berdasarkan output smartctl
+ON_TIME=$(echo "$SMART_INFO" | awk '/Power On Hours/ {print $NF}' | tr -d ',')
+WEAR_COUNT=$(echo "$SMART_INFO" | awk '/Percentage Used/ {print $NF}' | tr -d '%')
+LBAS_WRITTEN=$(echo "$SMART_INFO" | awk '/Data Units Written/ {print $(NF-1)}' | tr -d '[]')
+
+# Pastikan semua data ditemukan
+if [[ -z "$ON_TIME" || -z "$LBAS_WRITTEN" || -z "$WEAR_COUNT" ]]; then
+    echo "Error: Data tidak ditemukan. Pastikan smartctl berjalan dengan benar."
+    exit 1
+fi
+
+# Konversi nilai ke angka bulat
+ON_TIME=${ON_TIME//[^0-9]}
+LBAS_WRITTEN=${LBAS_WRITTEN//[^0-9]}
+WEAR_COUNT=${WEAR_COUNT//[^0-9]}
+
+# Konversi ke byte
+BYTES_WRITTEN=$(echo "$LBAS_WRITTEN * 512 * 1000 / 1953125" | bc -l)
+
+# Pastikan BYTES_WRITTEN tidak nol agar tidak menyebabkan error di `bc`
+if [[ "${BYTES_WRITTEN%.*}" -eq 0 ]]; then
+    MB_WRITTEN=0
+    GB_WRITTEN=0
+    TB_WRITTEN=0
+else
+    # Konversi ke MB, GB, TB
+    MB_WRITTEN=$(echo "scale=3; $BYTES_WRITTEN" | bc)
+    GB_WRITTEN=$(echo "scale=3; $BYTES_WRITTEN / 1000" | bc)
+    TB_WRITTEN=$(echo "scale=3; $BYTES_WRITTEN / 1000000" | bc)
+fi
+
+# Mean Write Rate (Cegah error pembagian oleh nol)
+if [[ "$ON_TIME" -eq 0 ]]; then
+    MEAN_WRITE_RATE="N/A"
+else
+    MEAN_WRITE_RATE=$(echo "scale=3; $MB_WRITTEN / $ON_TIME" | bc)
+fi
+
+# Output hasil
+echo "----------------------------------------"
+echo " SSD Status:   $SSD_DEVICE"
+echo "----------------------------------------"
+echo " On time:      $(printf "%'d" "$ON_TIME") jam"
+echo "----------------------------------------"
+echo " Data written:"
+echo "           MB: $(printf "%'.3f" "$MB_WRITTEN")"
+echo "           GB: $(printf "%'.3f" "$GB_WRITTEN")"
+echo "           TB: $(printf "%'.3f" "$TB_WRITTEN")"
+echo "----------------------------------------"
+echo " Mean write rate:"
+echo "        MB/hr: $MEAN_WRITE_RATE"
+echo "----------------------------------------"
+echo " Drive health: ${WEAR_COUNT} %"
+echo "----------------------------------------"
+

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mode=$(wofi --dmenu --prompt "Pilih Mode:" <<EOF
+Run
+Drun
+EOF
+)
+
+case $mode in
+    "Run") wofi --show run ;;
+    "Drun") wofi --show drun ;;
+    *) exit 1 ;;
+esac
+

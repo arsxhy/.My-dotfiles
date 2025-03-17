@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# File cache untuk menyimpan mode saat ini
+CACHE_FILE="$HOME/.cache/wofi-mode"
+
+# Cek apakah Wofi sedang berjalan
+if pgrep -x "wofi" > /dev/null; then
+    # Jika Wofi sedang berjalan, pindah ke mode berikutnya
+    current_mode=$(cat "$CACHE_FILE")
+
+    case "$current_mode" in
+        drun) next_mode="run" ;;
+        run) next_mode="drun" ;;
+        *) next_mode="drun" ;; # Default ke drun jika tidak terdeteksi
+    esac
+
+    echo "$next_mode" > "$CACHE_FILE"
+    pkill -x wofi
+    sleep 0.1
+    wofi --show "$next_mode" &
+else
+    # Jika Wofi belum dijalankan, jangan lakukan apa-apa
+    exit 0
+fi
+
