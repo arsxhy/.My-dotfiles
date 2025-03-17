@@ -1,0 +1,8 @@
+# Wofi Config
+term=kitty
+allow_images=true
+key_up=Ctrl-p
+key_down=Ctrl-n
+key_expand=Ctrl-space
+insensitive=true
+
