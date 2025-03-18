@@ -1,3 +1,17 @@
 # Mako Wayland Notification Config
 
+background-color=#282a36
+# text-color=#44475a
+text-color=#ffffff
+# border-color=#282a36
+border-color=#35b9aB
+
+[urgency=low]
+border-color=#282a36
+
+[urgency=normal]
+border-color=#f1fa8c
+
+[urgency=high]
+border-color=#ff5555
 on-notify=exec makoctl menu wofi -d -p 'Choose Action: '
