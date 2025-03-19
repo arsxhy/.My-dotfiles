@@ -6,12 +6,24 @@ text-color=#ffffff
 # border-color=#282a36
 border-color=#35b9aB
 
+# Aktifkan log debug
+max-visible=5
+sort=-time
+
+# Konfigurasi khusus untuk notifikasi Bluetooth
+[app-name=blueman]
+on-notify=exec bash -c 'ID=$(makoctl list | grep -A 1 "App name: blueman" | head -n 1 | grep -o "Notification [0-9]*:" | cut -d" " -f2 | tr -d ":"); CHOICE=$(echo -e "Accept\nReject" | wofi --dmenu -p "Bluetooth File"); if [ "$CHOICE" = "Accept" ]; then makoctl invoke $ID accept; else makoctl invoke $ID reject; fi'
+default-timeout=0
+ignore-timeout=1
+border-color=#5555ff
+
 [urgency=low]
 border-color=#282a36
 
 [urgency=normal]
 border-color=#f1fa8c
+default-timeout=3
 
 [urgency=high]
 border-color=#ff5555
-on-notify=exec makoctl menu wofi -d -p 'Choose Action: '
+default-timeout=10
