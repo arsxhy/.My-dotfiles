@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = grub
+
+[Action]
+Description = Running grub-install and signing grubx64.efi for Secure Boot...
+When = PostTransaction
+Exec = /bin/sh -c "grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=BOOT --modules='all_video boot cat chain echo efinet ext2 fat font gettext gfxmenu gfxterm gfxterm_background gzio hfsplus iso9660 jpeg keystatus loadenv loopback linux ls lsefi lsefimmap lsefisystab lssal minicmd ntfs part_apple password_pbkdf2 png probe regexp search sleep squash4 test true xfs play http gcry_arcfour gcry_blowfish gcry_camellia gcry_cast5 gcry_crc gcry_des gcry_dsa gcry_idea gcry_md4 gcry_md5 gcry_rfc2268 gcry_rijndael gcry_rmd160 gcry_rsa gcry_seed gcry_serpent gcry_sha1 gcry_sha256 gcry_sha512 gcry_tiger gcry_twofish gcry_whirlpool smbios normal memdisk halt reboot help cpuid btrfs part_gpt part_msdos search_fs_uuid search_fs_file search_label tpm efifwsetup configfile' --sbat /usr/share/grub/sbat.csv --recheck && sbsign --key /etc/secureboot/efi/MOK.key --cert /etc/secureboot/efi/MOK.crt --output /boot/efi/EFI/BOOT/grubx64.efi /boot/efi/EFI/BOOT/grubx64.efi"
