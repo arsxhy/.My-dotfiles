@@ -4,7 +4,7 @@ background-color=#282a36
 # text-color=#44475a
 text-color=#ffffff
 # border-color=#282a36
-border-color=#35b9aB
+border-color=#EE4863
 
 # Aktifkan log debug
 max-visible=5

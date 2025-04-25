@@ -1,7 +1,7 @@
 * {
     border:        none;
     border-radius: 0;
-    font-family:   "Noto Sans", "Font Awesome 6 Free";
+    font-family:   "Adwaita Sans", "Font Awesome 6 Free";
     font-size:     15px;
     box-shadow:    none;
     text-shadow:   none;
@@ -9,15 +9,15 @@
 }
 
 window#waybar {
-    color: rgba(53, 185, 171, 1);
-    background-color: rgba(23, 63, 79, 0.4);
-    border-bottom: 2px solid rgba(53, 185, 171, 0.4);
+    color: rgba(238, 72, 99, 1);
+    background-color: rgba(40, 27, 50, 0.8);
+    border-bottom: 2px solid rgba(238, 72, 99, 1);
     padding: 0px 10px;
     margin: 0px 5px;
 }
 
 window#waybar.solo {
-    color: rgba(53, 185, 171, 1);
+    color: rgba(238, 72, 99, 1);
 }
 
 #workspaces {
@@ -33,15 +33,15 @@ window#waybar.solo {
     padding: 0 5px;
     font-size: 18px;
     padding: 6px;
-    color: rgba(53, 185, 171, 1);
+    color: rgba(238, 72, 99, 1);
 }
 
 #workspaces button.active {
-    color: rgba(115, 186, 37, 1);
+    color: rgba(243, 92, 200, 1);
 }
 
 #workspaces button.visible {
-    color: rgba(115, 186, 37, 1);
+    color: rgba(243, 92, 200, 1);
 }
 
 #workspaces button.urgent {
