@@ -4,7 +4,7 @@
 
 [background]
 # Path to the background image
-path = "/usr/share/backgrounds/greeter.jpg"
+path = "/usr/share/backgrounds/archlinux/geowaves.png"
 
 # How the background image covers the screen if the aspect ratio doesn't match
 # Available values: "Fill", "Contain", "Cover", "ScaleDown"
@@ -21,16 +21,16 @@ ENV_VARIABLE = "value"
 application_prefer_dark_theme = true
 
 # Cursor theme name
-cursor_theme_name = "Adwaita"
+cursor_theme_name = "Dracula-cursors"
 
 # Font name and size
-font_name = "Cantarell 16"
+font_name = "Adwaita Sans 16"
 
 # Icon theme name
-icon_theme_name = "Adwaita"
+icon_theme_name = "Dracula"
 
 # GTK theme name
-theme_name = "Adwaita"
+theme_name = "Dracula"
 
 [commands]
 # The command used to reboot the system

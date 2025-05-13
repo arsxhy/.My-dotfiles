@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = grub
+
+[Action]
+Description = Running grub-install and update-grub...
+When = PostTransaction
+Exec = /bin/sh -c "grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux --recheck && grub-mkconfig -o /boot/grub/grub.cfg"
