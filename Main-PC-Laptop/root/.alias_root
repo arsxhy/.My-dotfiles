@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+# My Aliases Config
+alias ls='lsd -la1hF --color=auto'
+alias grep='grep --color=auto'
+alias ip='ip -color=auto'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias pingG='ping -c 5 8.8.8.8'
+alias py='python3'
+alias pactree='pactree -c'
+alias pactrees='pactree -c -s'
+
