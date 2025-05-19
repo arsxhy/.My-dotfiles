@@ -28,11 +28,16 @@ NILA="\[$(tput setaf 14)\]"
 GREEN="\[$(tput setaf 41)\]"
 RESET="\[$(tput sgr0)\]"
 PS1="${NILA}[\u@\h at \A - \W]${RESET}${GREEN}-$>${RESET}"
-#################################################################################################################################
+
+# My Prompt Config using powerline
+# POWERLINE_BASH_CONTINUATION=1
+# POWERLINE_BASH_SELECT=1
+# . /usr/share/powerline/bindings/bash/powerline.sh
+##################################################################################################
 # My Bash Shell Behaviour
 shopt -s autocd
 shopt -s checkwinsize
-#################################################################################################################################
+##################################################################################################
 # My Bash Shell Functions
 # Run-Help Ability
 run-help() { help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE"; }
@@ -41,10 +46,12 @@ bind -m emacs -x '"\eh": run-help'
 macsman() {
     emacsclient -nw -r -e "(man \"$1\")"
 }
-#################################################################################################################################
+##################################################################################################
 
-#################################################################################################################################
+##################################################################################################
 # My Environment Variables Config
+# Login Shell Env Var
+export HISTCONTROL=ignoredups
 # MANPATH="${HOME}/.local/share/man:/usr/local/share/man/:${MANPATH}"
 MANPAGER="nvim +Man!"
 # PAGER="nvimpager -p"
@@ -68,6 +75,7 @@ export PAGER
 export PYTHONSTARTUP
 export XDG_MENU_PREFIX='arch- kbuildsycoca6'
 export ANI_CLI_PLAYER='mpv'
+export ANI_CLI_EXTERNAL_MENU='1'
 # export RANGER_LOAD_DEFAULT_RC="false"
 # export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 # export PATH="$PATH:$GEM_HOME/bin"
@@ -92,7 +100,7 @@ export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
-#################################################################################################################################
+##################################################################################################
 # Startup Programs when the Shell or Terminal is Executed
 # if [ "$TERM" = "linux" ]; then
 # 	printf %b '\e[40m' '\e[8]' # set default background to color 0 'dracula-bg'
@@ -118,6 +126,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 # Don't append "exec" before some programs in '.bashrc' or you can't launch your terminal and get logout in tty
 # neofetch (RIP neofetch 31 December 2015 - 26 April 2024)
 fastfetch
+eval "$(zoxide init bash)"
 # eval "$(rbenv init -)"
 # (cat ~/.cache/wal/sequences &)
 # source ~/.cache/wal/colors-tty.sh

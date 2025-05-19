@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/sh
 
 # My Aliases Config
 alias ls='lsd -la1hF --color=auto'
@@ -17,6 +17,7 @@ alias tp-cpp='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-C++-L
 alias tp-sh='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-Bash-Scripting'
 alias tp-kuliah='cd ~/Documents/Kuliah/'
 alias tp-smt3='cd ~/Documents/Kuliah/Semester\ 3\ -\ Teknik\ Informatika/'
+alias tp-smt4='cd ~/Documents/Kuliah/Semester\ 4\ -\ Teknik\ Informatika/'
 # alias arrpc='node --trace-warnings ~/Downloads/Others/Discord\ Rich-Presence/arrpc/src'
 alias tp-webg='cd /opt/lampp/htdocs/10123354/'
 alias tp-webx='cd /opt/lampp/htdocs/latihanSendiri/'
@@ -48,6 +49,6 @@ alias emacs='emacsclient -r -nw'
 alias mctl='java -jar ~/Downloads/TLauncher-2.*/TLauncher.jar'
 alias tp-mctl='cd ~/Downloads/TLauncher-2.*/'
 alias clrGreenclip='pkill greenclip && greenclip clear && greenclip daemon &'
-alias vim='nvim'
+# alias vim='nvim'
 alias mcaselector='java --module-path $PATH_TO_FX21 --add-modules javafx.controls -jar ~/Downloads/TLauncher-2.*/mcaselector-*.jar'
 alias ncdu='ncdu -qe --color=dark-bg'
