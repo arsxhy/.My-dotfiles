@@ -20,13 +20,15 @@
 	    "1": "", // VSCode
 	    "2": "", // Discord
 	    "3": "", // Music
+	    "4": "", // Gaming
+	    "5": "", // QEMU/KVM
             "urgent": "",
             "active": "",
             "default": "",
 	    "persistent":""
         },
 	"persistent-workspaces": {
-		"*": [1, 2, 3] // Persistent Workspaces on Every Monitor
+		"*": [1, 2, 3, 4, 5] // Persistent Workspaces on Every Monitor
 	}
     },
     "hyprland/window": {
