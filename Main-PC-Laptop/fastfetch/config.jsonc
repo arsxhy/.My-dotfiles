@@ -117,7 +117,10 @@
     },
     {
       "type": "cpu",
-      "keyColor": "magenta"
+      "keyColor": "magenta",
+      "showPeCoreCount": true,
+      "temp": true
+
     },
     {
       "type": "gpu",
