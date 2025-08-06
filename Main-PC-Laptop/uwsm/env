@@ -1,8 +1,14 @@
 export XDG_MENU_PREFIX="arch- kbuildsycoca6"
-export PATH="/home/arsxhy/.local/bin:$PATH"
+export PATH="/home/arsxhy/.local/bin:/home/arsxhy/.cargo/bin:$PATH"
+export NODE_PATH="/usr/lib/node_modules/:$HOME/.local/share/npm-packages/node_modules/"
 export LIBVIRT_DEFAULT_URI="qemu:///system"
-export JDK_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.toolkit.name=WLToolkit"
+export JAVA_HOME="/usr/lib/jvm/java-21-openjdk/"
+export JDK_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dawt.toolkit.name=WLToolkit"
 export QT_QPA_PLATFORM="wayland;xcb"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_QPA_PLATFORMTHEME="qt6ct"
 export ELECTRON_TRASH="trash-cli code"
+export PROTON_NO_WM_DECORATION=1
+export PROTON_PREFER_SDL_INPUT=1
+export WINE_NO_WM_DECORATION=1
+export WINE_PREFER_SDL_INPUT=1

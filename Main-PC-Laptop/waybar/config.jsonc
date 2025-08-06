@@ -1,226 +1,323 @@
 {
-    "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    // "gtk-layer-shell": "false",
-    // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyrpland/submap", "hyprland/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["custom/pacman", "custom/hyprpicker", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "power-profiles-daemon", "pulseaudio", "custom/layout", "custom/notification", "tray"],
-    "hyprland/submap": {
-        "format": " {}"
-    },
-    "hyprland/workspaces": {
-        "all-outputs": true,
-        "disable-scroll": true,
-	"show-special": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-	    "1": "", // VSCode
-	    "2": "", // Discord
-	    "3": "", // Music
-	    "4": "", // Gaming
-	    "5": "", // QEMU/KVM
-            "urgent": "",
-            "active": "",
-            "default": "",
-	    "persistent":""
-        },
-	"persistent-workspaces": {
-		"*": [1, 2, 3, 4, 5] // Persistent Workspaces on Every Monitor
-	}
-    },
-    "hyprland/window": {
-	"icon": true,
-        "max-length": 80,
-        "tooltip": false
-    },
-      "custom/pacman": {
-        "format": "{} ",
-	"interval": 3600,
-	"exec": "checkupdates | wc -l; echo 'packages to update'",
-	"exec-if": "exit 0",
-	"on-click": "exec kitty -e sudo sh -c 'pacman -Syyu; pkill -SIGRTMIN+8 waybar'",
-	"signal": 8
-      },
-      
-   // "custom/zypper": {
-   //     "format": "{} ",
-   //     "interval": 3600,
-   //     "exec": "zypper lu | grep 'v \\+|' | wc -l; echo 'packages to update'",
-   //     "exec-if": "exit 0",
-   //     "on-click": "exec kitty -e sudo sh -c 'zypper ref; zypper dup; pkill -SIGRTMIN+8 waybar'",
-   //     "signal": 8
-   // },
-    "custom/hyprpicker": {
-	"format": "",
-	"tooltip": true,
-	"tooltip-format": "Hyprpicker Color Picker",
-	"on-click": "bash -c 'hyprpicker --autocopy --format=hex; pkill -SIGRTMIN+8 waybar'"
-    },
-    // Modules configuration
-    //  "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        } 
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        "timezone": "Asia/Jakarta",
-        "format": " {:%A, %d %B %Y|%R}",
-        "format-alt": " {:%a %d %b :%V %H:%M}",
-        "tooltip-format": "<span color='#ee4863'><tt><small>{calendar}</small></tt></span>",
-        "calendar": {
-            "mode-mon-col"      : 4,
-            "weeks-pos"         : "left",
-            "on-scroll"         : 1,
-            "on-click-right"    : "mode",
-            "format": {
-                "months":    "<span color='#ee2e24'><b>{}</b></span>",
-                "weeks":    "<span color='#d9d8d8'><b>{}</b></span>",
-                "weekdays": "<span color='#f35cc8'><b>{}</b></span>",
-                "today":    "<span color='#f35cc8'><b><u>{}</u></b></span>"
-            }
-        },
-        "actions": {
-            "on-click-right"    : "mode",
-            "on-scroll-up"      : "shift_up",
-            "on-scroll-down"      : "shift_down"
-        },
-        "interval": 10
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", ""]
-    },
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}",
-        "format-charging": "",
-        "format-plugged": "",
-        "format-alt": "{capacity}% {time}",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "",
-        "format-ethernet": "",
-        "format-linked": "",
-        "format-disconnected": "⚠",
-        "format-alt": "{ifname} {essid} ({signalStrength}%)",
-	"on-click-right": "exec kitty -e bash -c 'nmtui;pkill -SIGRTMIN+8 waybar'"
-    },
-    "bluetooth": {
-	"format": "",
-	"format-disabled": "󰂲",
-	"format-off": "󰂲",
-	"format-connected": " {num_connections}",
-	// "format-connected": " {device_alias}",
-	"tooltip-format": "{controller_address} {status}\n\n{num_connections} connected",
-	"tooltip-format-disabled": "{status}",
-	"tooltip-format-connected": "{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-	"format-connected-battery": " {device_alias} {device_battery_percentage}%",
-	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-	// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
-	"on-click": "bluetooth toggle; pkill -SIGRTMIN+8 waybar",
-	"on-click-right": "exec kitty -e bash -c 'bluetoothctl;pkill -SIGRTMIN+8 waybar'"
-    },
-    "pulseaudio": {
-        "format": "{volume} {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "scroll-step": 10,
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-right": "pavucontrol-qt",
-        "tooltip": false
-    },
-    "power-profiles-daemon": {
-  	"format": "{icon}",
-  	"tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-  	"tooltip": true,
-  	"format-icons": {
-    	"default": "",
-    	"performance": "",
-    	"balanced": "",
-    	"power-saver": ""
-	}
-    },
-    "custom/scratchpad": {
-        "format-text": "{}",
-        "return-type": "json",
-        "interval": 3,
-        "exec": "/usr/share/openSUSEway/helpers/scratchpad-indicator.sh 2> /dev/null",
-        "exec-if": "exit 0",
-        "on-click": "swaymsg 'scratchpad show'",
-        "on-click-right": "swaymsg 'move scratchpad'"
-    },
-    "custom/notification": {
-	"tooltip": true,
-	"format": "{icon}",
-	"format-icons": {
-	     "notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
-	     "none": " ",
-	     "dnd-notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
-	     "dnd-none": " "
+	"layer": "top", // Waybar at top layer
+	"position": "top", // Waybar position (top|bottom|left|right)
+	"height": 15, // Waybar height (to be removed for auto height)
+	// "width": 1280, // Waybar width
+	// "gtk-layer-shell": false,
+	// "reload_style_on_change": true,
+	// Choose the order of the modules
+	"modules-left": [
+		"sway/mode",
+		"sway/workspaces",
+		"sway/window",
+		"hyprland/workspaces",
+		"hyrpland/submap",
+		"hyprland/window"
+	],
+	"modules-center": [
+		"clock"
+	],
+	"modules-right": [
+		"gamemode",
+		"custom/pacman",
+		"custom/hyprpicker",
+		"custom/hyprshot",
+		"cpu",
+		"memory",
+		"temperature",
+		"backlight",
+		"battery",
+		"battery#bat2",
+		"idle_inhibitor",
+		"power-profiles-daemon",
+		// "pulseaudio",
+		"wireplumber",
+		// "pulseaudio/slider",
+		"custom/notification",
+		"tray"
+	],
+	"hyprland/submap": {
+		"format": " {}"
 	},
-	"return-type": "json",
-	"exec-if": "which swaync-client",
-	"exec": "swaync-client -swb",
-	"on-click": "swaync-client -t -sw",
-	"on-click-right": "swaync-client -d -sw",
-	"escape": true
-   }
+	"hyprland/workspaces": {
+		"all-outputs": true,
+		"disable-scroll": true,
+		"show-special": true,
+		"format": "{name} {icon}",
+		"format-icons": {
+			"1": "", // VSCode
+			"2": "", // Discord
+			"3": "", // Music
+			"4": "", // Gaming
+			"5": "", // QEMU/KVM
+			"urgent": "",
+			"active": "",
+			"default": "",
+			"persistent": ""
+		},
+		"persistent-workspaces": {
+			"*": [
+				1,
+				2,
+				3,
+				4,
+				5
+			] // Persistent Workspaces on Every Monitor
+		}
+	},
+	"hyprland/window": {
+		"icon": true,
+		"max-length": 80,
+		"tooltip": false
+	},
+	"custom/pacman": {
+		"format": "{} ",
+		"interval": 3600,
+		"exec": "checkupdates | wc -l; echo 'packages to update'",
+		"exec-if": "exit 0",
+		"on-click": "exec kitty -e zsh -c 'sudo pacman -Syyu; echo; pkill -SIGRTMIN+8 waybar'",
+		"signal": 8
+	},
+	"custom/hyprpicker": {
+		"format": "",
+		"tooltip": true,
+		"tooltip-format": "Hyprpicker Color Picker",
+		"on-click": "sh -c 'hyprpicker --autocopy --format=hex; pkill -SIGRTMIN+8 waybar'"
+	},
+	// Modules configuration
+	"sway/mode": {
+		"format": " {}",
+		"max-length": 50
+	},
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+		"format": "{name} {icon}",
+		"format-icons": {
+			"1": "",
+			"2": "",
+			"3": "",
+			"4": "",
+			"5": "",
+			"urgent": "",
+			"focused": "",
+			"default": ""
+		}
+	},
+	"sway/window": {
+		"icon": true,
+		"max-length": 80,
+		"tooltip": false
+	},
+	"gamemode": {
+		"format": "{glyph}",
+		"format-alt": "{glyph} {count}",
+		"glyph": "",
+		"hide-not-running": true,
+		"use-icon": true,
+		"icon-name": "input-gaming-symbolic",
+		"icon-spacing": 4,
+		"icon-size": 20,
+		"tooltip": true,
+		"tooltip-format": "Games running: {count}"
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		},
+		"timeout": 15
+	},
+	"tray": {
+		// "icon-size": 21,
+		"spacing": 10
+	},
+	"clock": {
+		"timezone": "Asia/Jakarta",
+		"format": " {:%A, %d %B %Y|%R}",
+		"format-alt": " {:%a %d %b :%V %H:%M}",
+		"tooltip-format": "<span color='#ee4863'><tt><small>{calendar}</small></tt></span>",
+		"calendar": {
+			"mode-mon-col": 4,
+			"weeks-pos": "left",
+			"on-scroll": 1,
+			"on-click-right": "mode",
+			"format": {
+				"months": "<span color='#ee2e24'><b>{}</b></span>",
+				"weeks": "<span color='#d9d8d8'><b>{}</b></span>",
+				"weekdays": "<span color='#f35cc8'><b>{}</b></span>",
+				"today": "<span color='#f35cc8'><b><u>{}</u></b></span>"
+			}
+		},
+		"actions": {
+			"on-click-right": "mode",
+			"on-scroll-up": "shift_up",
+			"on-scroll-down": "shift_down"
+		},
+		"interval": 10
+	},
+	"cpu": {
+		"format": "{usage}% ",
+		"tooltip": false
+	},
+	"memory": {
+		"format": "{}% "
+	},
+	"temperature": {
+		// "thermal-zone": 2,
+		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+		"critical-threshold": 80,
+		// "format-critical": "{temperatureC}°C {icon}",
+		"format": "{temperatureC}°C {icon}",
+		"format-icons": [
+			"",
+			"",
+			""
+		]
+	},
+	"backlight": {
+		// "device": "acpi_video1",
+		"format": "{percent}% {icon}",
+		"format-icons": [
+			"",
+			""
+		]
+	},
+	"battery": {
+		"states": {
+			// "good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon}",
+		"format-charging": "",
+		"format-plugged": "",
+		"format-alt": "{capacity}% {time}",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"battery#bat2": {
+		"bat": "BAT2"
+	},
+	"network": {
+		// "interface": "wlp2*", // (Optional) To force the use of this interface
+		"format-wifi": "",
+		"format-ethernet": "",
+		"format-linked": "",
+		"format-disconnected": "⚠",
+		"format-alt": "{ifname} {essid} ({signalStrength}%)",
+		"on-click-right": "exec kitty -e zsh -c 'nmtui;pkill -SIGRTMIN+8 waybar'"
+	},
+	"bluetooth": {
+		"format": "",
+		"format-disabled": "󰂲",
+		"format-off": "󰂲",
+		"format-connected": " {num_connections}",
+		// "format-connected": " {device_alias}",
+		"tooltip-format": "{controller_address} {status}\n\n{num_connections} connected",
+		"tooltip-format-disabled": "{status}",
+		"tooltip-format-connected": "{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+		"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+		"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+		// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+		"on-click": "bluetooth toggle; pkill -SIGRTMIN+8 waybar",
+		"on-click-right": "exec kitty -e zsh -c 'bluetoothctl;pkill -SIGRTMIN+8 waybar'"
+	},
+	// "pulseaudio": {
+	// 	"format": "{volume} {icon}",
+	// 	"format-muted": "",
+	// 	"format-icons": {
+	// 		"headphones": "",
+	// 		"handsfree": "",
+	// 		"headset": "",
+	// 		"phone": "",
+	// 		"portable": "",
+	// 		"car": "",
+	// 		"default": [
+	// 			"",
+	// 			"",
+	// 			""
+	// 		]
+	// 	},
+	// 	"scroll-step": 10,
+	// 	"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+	// 	"on-click-right": "pavucontrol-qt",
+	// 	"tooltip": false
+	// },
+	// "pulseaudio/slider": {
+	// 	"min": 0,
+	// 	"max": 100,
+	// 	"orientation": "horizontal"
+	// },
+	"wireplumber": {
+		"format": "{volume}% {icon}",
+		"format-muted": "",
+		"format-icons": {
+			"headphones": "",
+			"handsfree": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": [
+				"",
+				"",
+				""
+			]
+		},
+		"scroll-step": 10,
+		"on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+		"on-click-right": "pavucontrol-qt",
+		"on-click-middle": "helvum"
+	},
+	"power-profiles-daemon": {
+		"format": "{icon}",
+		"tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+		"tooltip": true,
+		"format-icons": {
+			"default": "",
+			"performance": "",
+			"balanced": "",
+			"power-saver": ""
+		}
+	},
+	"custom/hyprshot": {
+		"format": "{icon}",
+		"tooltip-format": "Save Screenshot to a Custom Directory",
+		"tooltip": true,
+		/* Screenshot a region but with the ability to choose directory 
+           where to save the screenshot.
+           if you want to use this, make sure Rust Programming Language
+           is installed and then run this command
+           `cargo install dialogtocli` then add the `~/.cargo/bin` to your $PATH
+        */
+		"on-click": "zsh -c 'hyprshot -m output -o $(dialogtocli -d)'", // Screenshot Screenfull
+		"on-click-right": "zsh -c 'hyprshot -m region -o $(dialogtocli -d)'", // Screenshot Region
+		"format-icons": {
+			"default": ""
+		}
+	},
+	"custom/notification": {
+		"tooltip": true,
+		"format": "{icon}",
+		"format-icons": {
+			"notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
+			"none": " ",
+			"dnd-notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
+			"dnd-none": " "
+		},
+		"return-type": "json",
+		"exec-if": "which swaync-client",
+		"exec": "swaync-client -swb",
+		"on-click": "swaync-client -t -sw",
+		"on-click-right": "swaync-client -d -sw",
+		"escape": true
+	}
 }

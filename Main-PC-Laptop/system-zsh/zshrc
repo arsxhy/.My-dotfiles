@@ -1,0 +1,43 @@
+#
+# zsh specific config
+#
+# zsh prompt
+# PROMPT='%F{red}%n%f@%F{magenta}%m%f %F{blue}%B%~%b%f %# '
+# RPROMPT='[%F{yellow}%?%f]'
+# Hindari duplikat dalam history
+setopt HIST_IGNORE_ALL_DUPS       # Hapus semua duplikat sebelumnya dari history
+setopt HIST_SAVE_NO_DUPS          # Jangan simpan entri duplikat ke file history
+setopt HIST_IGNORE_DUPS           # Abaikan duplikat langsung dari perintah sebelumnya
+setopt HIST_FIND_NO_DUPS          # Saat search Ctrl+R, skip duplikat
+setopt HIST_EXPIRE_DUPS_FIRST
+
+# Opsi tambahan (opsional tapi sangat disarankan)
+setopt HIST_REDUCE_BLANKS         # Hapus spasi berlebih dalam perintah
+setopt INC_APPEND_HISTORY         # Simpan history langsung setelah perintah dijalankan
+
+# Remembering recent directories
+eval "$(zoxide init zsh)"
+
+# dirscolors colorscheme (Dracula)
+# Atur dircolors jika file tersedia
+if [[ -r ~/.dircolors ]]; then
+  eval "$(dircolors ~/.dircolors)"
+fi
+
+# Python Startup
+export PYTHONSTARTUP="$HOME/.pystartup"
+
+# My Aliases Config
+alias ff='fastfetch'
+alias ls='lsd -la1hF --color=auto'
+alias grep='grep --color=auto'
+alias ip='ip -color=auto'
+alias cp='cp -i'
+alias rm='rm -i'
+alias mv='mv -i'
+alias lsblk='lsblk --tree -fs -o NAME,MAJ:MIN,FSTYPE,PARTUUID,LABEL,SIZE,RO,TYPE,MOUNTPOINTS'
+alias pingG='ping 8.8.8.8'
+alias pactree='pactree -c'
+alias pactrees='pactree -c -s'
+alias py='python3'
+

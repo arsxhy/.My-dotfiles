@@ -1,0 +1,43 @@
+#!/usr/bin/env zsh
+
+# Fungsi untuk mengirim notifikasi
+send_notification() {
+    # Dapatkan persentase kecerahan saat ini (misal: "75")
+    local current_brightness=$(brightnessctl -m | cut -d, -f4 | tr -d '%')
+    local icon_name=""
+
+    # Tentukan ikon berdasarkan level kecerahan
+    if (( current_brightness == 0 )); then
+        icon_name="low-brightness"
+    elif (( current_brightness <= 33 )); then
+        icon_name="brightness-low"
+    elif (( current_brightness <= 66 )); then
+        icon_name="high-brightness"
+    else
+        icon_name="brightness-high"
+    fi
+
+    # Kirim notifikasi menggunakan nama ikon
+    notify-send -h string:x-canonical-private-synchronous:sys-notify \
+                -u low \
+                -i "$icon_name" \
+                "Kecerahan: ${current_brightness}%"
+}
+
+# Eksekusi berdasarkan argumen yang diberikan
+case "$1" in
+    --inc)
+        # Naikkan kecerahan dan kirim notifikasi
+        brightnessctl set 10%+
+        send_notification
+        ;;
+    --dec)
+        # Turunkan kecerahan dan kirim notifikasi
+        brightnessctl set 10%-
+        send_notification
+        ;;
+    *)
+        # Jika tidak ada argumen, cukup tampilkan notifikasi saat ini
+        send_notification
+        ;;
+esac

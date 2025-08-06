@@ -1,0 +1,14 @@
+#
+# Global Environment Variables
+#
+export MANPAGER="nvim +Man!"
+export PATH="$PATH:/usr/lib/colorgcc/bin"
+export CCACHE_PATH="/usr/bin"
+# Ukuran history (dapat disesuaikan)
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTCONTROL=ignoreboth
+export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
+export SUDO_EDITOR="nvim"
+export ZDOTDIR="$HOME/.config/zsh/"
+export HISTFILE=$ZDOTDIR/.zsh_history
