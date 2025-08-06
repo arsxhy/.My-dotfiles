@@ -1,0 +1,13 @@
+#!/usr/bin/zsh
+
+orphan_packages=$(pacman -Qtd)
+
+for i in $orphan_packages
+do
+    print -P "%B%F{009}List Orphan Packages: %b%f"
+    print -P "%F{45}$i%f"
+done
+
+how_much=$(pacman -Qtd | wc -l)
+
+print -P "%B%F{129}Total Orphan Packages:%b%f %F{15}${how_much}%f"

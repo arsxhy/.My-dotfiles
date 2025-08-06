@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 mode=$(wofi --dmenu --prompt "Pilih Mode:" <<EOF
 Run

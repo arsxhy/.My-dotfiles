@@ -1,2 +1,2 @@
-#!/usr/bin/bash
-kitty -e bash -c 'cmus'
+#!/usr/bin/sh
+kitty -e zsh -c 'cmus'

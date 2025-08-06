@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # File cache untuk menyimpan mode saat ini
 CACHE_FILE="$HOME/.cache/wofi-mode"

@@ -1,0 +1,73 @@
+#!/usr/bin/zsh
+
+# Jalur ke executable Neovide yang sebenarnya
+NEOVIDE_BIN="/usr/bin/neovide"
+
+# Direktori base untuk socket Neovim
+BASE_SOCKET_DIR="/run/user/$(id -u)"
+
+# Variabel untuk mengelola sesi dan file yang akan dibuka
+SESSION_NAME="nvim-server" # Nama sesi default
+FILE_TO_OPEN=""       # File yang akan dibuka, jika ada
+
+# Parsing argumen baris perintah
+# Iterasi melalui argumen untuk mencari opsi kustom
+# Catatan: %F dari .desktop akan menambahkan argumen file di akhir
+while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+        --session)
+            # Ambil nama sesi dari argumen berikutnya
+            SESSION_NAME="$2"
+            shift # Konsumsi argumen nama sesi
+            ;;
+        *)
+            # Asumsikan argumen lainnya adalah jalur file yang akan dibuka
+            FILE_TO_OPEN="$1"
+            ;;
+    esac
+    shift # Konsumsi argumen saat ini
+done
+
+# Tentukan jalur lengkap ke socket Neovim untuk sesi ini
+NVIM_SOCKET="$BASE_SOCKET_DIR/$SESSION_NAME.sock"
+
+# --- LOGGING DEBUG (opsional, bisa dihapus setelah dikonfirmasi) ---
+print -P "$(date): Attempting to launch Neovide for session '$SESSION_NAME'." >> ~/.local/share/neovide-launch-log.txt
+print -P "$(date): Socket path: '$NVIM_SOCKET'." >> ~/.local/share/neovide-launch-log.txt
+print -P "$(date): File to open: '$FILE_TO_OPEN'." >> ~/.local/share/neovide-launch-log.txt
+# --- AKHIR LOGGING DEBUG ---
+
+# Logika untuk memulai/terhubung ke Neovim daemon
+# Jika ini bukan sesi 'default', kita perlu memastikan daemon untuk sesi ini berjalan
+if [[ "$SESSION_NAME" != "default" ]]; then
+    if [ ! -S "$NVIM_SOCKET" ]; then
+        # Jika socket tidak ada, coba jalankan Neovim headless untuk sesi ini
+        print -P "$(date): Starting new daemon for session '$SESSION_NAME'." >> ~/.local/share/neovide-launch-log.txt
+        /usr/bin/nvim --headless --listen "$NVIM_SOCKET" &
+        # Beri sedikit waktu agar daemon bisa inisialisasi dan membuat socket
+        sleep 0.5
+    else
+        print -P "$(date): Daemon for session '$SESSION_NAME' already running." >> ~/.local/share/neovide-launch-log.txt
+    fi
+else
+    # Untuk sesi 'default', asumsikan itu dikelola oleh systemd user service Anda
+    # Jika daemon default mati, Neovide akan gagal terhubung,
+    # tetapi systemd harus me-restartnya karena Restart=always
+    print -P "$(date): Connecting to default daemon (managed by systemd)." >> ~/.local/share/neovide-launch-log.txt
+fi
+
+# Jika ada file yang perlu dibuka, kirim perintah ke Neovim daemon
+if [ -n "$FILE_TO_OPEN" ]; then
+    print -P "$(date): Sending command to open file: '$FILE_TO_OPEN'." >> ~/.local/share/neovide-launch-log.txt
+    # Gunakan printf %q untuk mengutip nama file dengan benar untuk shell
+    QUOTED_FILE_TO_OPEN=$(printf "%q" "$FILE_TO_OPEN")
+    # Kirim perintah :e ke Neovim daemon melalui --remote-send
+    # Gunakan <C-\><C-n> untuk memastikan Neovim dalam mode normal sebelum menerima :e
+    /usr/bin/nvim --server "$NVIM_SOCKET" --remote-send "<C-\\><C-n>:e $QUOTED_FILE_TO_OPEN<CR>"
+else
+    print -P "$(date): No file specified to open." >> ~/.local/share/neovide-launch-log.txt
+fi
+
+# Akhirnya, jalankan Neovide dan hubungkan ke daemon yang sesuai
+# Menggunakan exec agar PID skrip diganti dengan PID Neovide
+exec "$NEOVIDE_BIN" --server="$NVIM_SOCKET"
