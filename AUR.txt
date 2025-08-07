@@ -2,10 +2,8 @@ abdownloadmanager-bin
 cls
 dracula-dircolors-git
 dracula-gtk-theme-full
-guile-gash
 hyprcursor-dracula-kde-git
 hyprsysteminfo
-jdtls
 librespot
 matugen-bin
 otf-takao
@@ -15,7 +13,6 @@ python-lynxpresence
 python-tekore
 python-tidalapi
 rar
-spacecadetpinball-bin
 ttf-ms-win11-auto
 ttf-ms-win11-auto-japanese
 ttf-ms-win11-auto-other
