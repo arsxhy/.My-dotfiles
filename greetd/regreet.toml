@@ -4,7 +4,8 @@
 
 [background]
 # Path to the background image
-path = "/usr/share/backgrounds/archlinux/geowaves.png"
+# path = "/usr/share/backgrounds/archlinux/geowaves.png"
+path = "/usr/share/wallpapers/cachyos-wallpapers/splash.png"
 
 # How the background image covers the screen if the aspect ratio doesn't match
 # Available values: "Fill", "Contain", "Cover", "ScaleDown"
