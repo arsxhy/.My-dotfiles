@@ -210,7 +210,6 @@ glaze
 gnome-keyring
 gnome-themes-extra
 go
-gopls
 gpart
 gparted
 gptfdisk
@@ -372,7 +371,7 @@ lirc
 litehtml
 live-media
 lldb
-llvm19
+llvm20
 logrotate
 lrzip
 lsb-release
@@ -390,7 +389,6 @@ lzop
 man-db
 man-pages
 mariadb-libs
-marksman
 mathjax
 mathjax2
 maven
@@ -574,7 +572,6 @@ python-jinja
 python-keyring
 python-keyrings-alt
 python-linkify-it-py
-python-lsp-server
 python-lxml
 python-lxml-docs
 python-lxml-html-clean
@@ -783,14 +780,12 @@ swaync
 switcheroo-control
 sysfsutils
 system-config-printer
-taplo-cli
 tauon-music-box
 tealdeer
 tectonic
 telegram-desktop
 terminus-font
 texinfo
-texlab
 texlive-bin
 texlive-binextra
 texlive-context
@@ -900,7 +895,6 @@ vlc
 vlc-plugins-all
 vlc-plugins-extra
 vtk
-vue-language-server
 vulkan-extra-layers
 vulkan-extra-tools
 vulkan-headers
@@ -980,7 +974,6 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 xwayland-satellite
-yaml-language-server
 yapf
 yarn
 yay
@@ -988,7 +981,6 @@ yazi
 yt-dlp
 zen-browser-bin
 zip
-zls
 zoom
 zoxide
 zsh-autocomplete
