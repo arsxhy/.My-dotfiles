@@ -145,6 +145,7 @@ dmidecode
 dmraid
 dnsmasq
 dosfstools
+dos2unix
 dotnet-host-bin
 dotnet-runtime-bin
 dotnet-sdk-bin
