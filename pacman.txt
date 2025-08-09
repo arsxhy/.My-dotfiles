@@ -169,7 +169,6 @@ exfatprogs
 exiv2
 expac
 extra-cmake-modules
-eza
 f2fs-tools
 fastfetch
 fastjar
@@ -407,7 +406,6 @@ mtools
 mupdf-tools
 nano
 nano-syntax-highlighting
-ncmpcpp
 nemo
 nemo-audio-tab
 nemo-emblems
@@ -768,9 +766,6 @@ splix
 squashfs-tools
 sshfs
 steam
-stylelint
-stylelint-config-recommended
-stylelint-config-standard
 sudo
 sway-contrib
 swaybg
@@ -978,7 +973,6 @@ xwayland-satellite
 yapf
 yarn
 yay
-yazi
 yt-dlp
 zen-browser-bin
 zip
