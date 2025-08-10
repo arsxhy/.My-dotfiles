@@ -757,6 +757,7 @@ sg3_utils
 shellcheck
 smartmontools
 snapper
+socat
 sof-firmware
 sox
 speech-dispatcher
