@@ -908,6 +908,7 @@ wayland-protocols
 wayland-utils
 wdiff
 webkitgtk-6.0
+wev
 wget
 which
 wireless-regdb
