@@ -150,6 +150,7 @@ dotnet-host-bin
 dotnet-runtime-bin
 dotnet-sdk-bin
 dotnet-targeting-pack-bin
+downgrade
 dpkg
 dracula-cursors-git
 dracula-icons-git
