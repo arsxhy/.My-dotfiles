@@ -690,6 +690,7 @@ qt6-examples
 qt6-graphs
 qt6-grpc
 qt6-httpserver
+qt6-languageserver
 qt6-location
 qt6-lottie
 qt6-networkauth
