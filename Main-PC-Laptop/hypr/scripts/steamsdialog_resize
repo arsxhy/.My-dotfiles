@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+setopt extendedglob
+
+# Pola RegEx untuk judul window Steam yang mau diatur ukurannya
+steam_window_title_pattern="Steam Settings|Add Non-Steam Game|Steam Runtime System Information|System Information|System Report"
+
+# --- Loop Utama ---
+# Mendengarkan event unix socket dari Hyprland
+socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | while read -r line; do
+
+    # Cek apakah event adalah "openwindow"
+    if [[ $line == *"openwindow>>"* ]]; then
+
+        # ================================== #
+        # Kondisi untuk window Dialog Steam  #
+        # ================================== #
+        if [[ $line == *"steam,"* ]]; then
+            # Ekstrak judul window dari event string
+            window_title=${line##*steam,}
+
+            # Pengecualian: Abaikan window utama Steam
+            if [[ -z "$window_title" || "$window_title" == "Steam" ]]; then
+                continue
+            fi
+
+            # Cek apakah judul cocok dengan pola dialog/window
+            if [[ $window_title =~ ($steam_window_title_pattern) ]]; then
+                sleep 0.2
+                hyprctl --batch "dispatch resizeactive exact 991 756; dispatch centerwindow"
+            fi
+
+            # ======================================= #
+            # Kondisi untuk window Blueman "Plugins"  #
+            # ======================================= #
+        elif [[ $line == *"blueman-applet,Plugins"* ]]; then
+            sleep 0.2
+            hyprctl --batch "dispatch resizeactive exact 1177 699; dispatch centerwindow"
+        fi
+    fi
+done
