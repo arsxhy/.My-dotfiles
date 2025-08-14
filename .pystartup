@@ -1,0 +1,4 @@
+#!/usr/bin/python
+
+import jedi
+print("Welcome to Python with Jedi!")
