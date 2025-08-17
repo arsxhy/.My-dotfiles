@@ -20,5 +20,4 @@ ttf-ms-win11-auto-sea
 vencord-installer-cli-bin
 wifi-qr
 x86-64-level
-xwaylandvideobridge
 zshbinsh

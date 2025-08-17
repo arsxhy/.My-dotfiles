@@ -51,7 +51,7 @@ bottom
 bpftune-git
 brightnessctl
 btop
-btrfs-assistant-git
+btrfs-assistant
 btrfs-progs
 bzip3
 cabextract
@@ -73,7 +73,6 @@ cachyos-sysctl-manager
 cachyos-v3-mirrorlist
 cachyos-v4-mirrorlist
 cachyos-wallpapers
-cachyos-zsh-config
 calc
 cargo-about
 cargo-asm
@@ -265,7 +264,6 @@ hyprpicker
 hyprshot
 hyprsunset
 ibus
-icu69
 img2pdf
 inetutils
 innoextract
@@ -371,7 +369,6 @@ lirc
 litehtml
 live-media
 lldb
-llvm20
 logrotate
 lrzip
 lsb-release
@@ -400,7 +397,6 @@ meson
 micro
 mkinitcpio
 modemmanager
-modrinth-app-git
 movit
 mtools
 mupdf-tools
@@ -768,11 +764,6 @@ squashfs-tools
 sshfs
 steam
 sudo
-sway-contrib
-swaybg
-swayfx
-swayidle
-swaylock
 swaync
 switcheroo-control
 sysfsutils
@@ -921,7 +912,6 @@ wpa_supplicant
 xampp
 xdg-desktop-portal-gtk
 xdg-desktop-portal-hyprland
-xdg-desktop-portal-wlr
 xdg-user-dirs
 xdg-utils-cxx
 xdotool
@@ -974,7 +964,6 @@ xorg-xwud
 xwayland-satellite
 yapf
 yarn
-yay
 yt-dlp
 zen-browser-bin
 zip
