@@ -2,9 +2,9 @@
 Categories=Game;
 Comment[en_US]=The Best Minecraft Launcher
 Comment=The Best Minecraft Launcher
-Exec=java -jar /home/arsxhy/Downloads/TLauncher-2.895/TLauncher-2.895.jar
-GenericName[en_US]=
-GenericName=
+Exec=java -jar /home/arsxhy/Downloads/TLauncher-2.895/TLauncher.jar
+GenericName[en_US]= Minecraft Launcher (Cracked)
+GenericName= Minecraft Launcher (Cracked)
 Icon=/home/arsxhy/Downloads/TLauncher-2.895/tlauncher.svg
 MimeType=application/java-archive;
 Name[en_US]=TLauncher
