@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+# VERSI DEBUGGING DENGAN LOGGING
+
+# Tentukan file log
+LOG_FILE="/tmp/perl_wrapper.log"
+
+# Tulis pesan ke file log, hapus isi log sebelumnya
+print "--- Wrapper script dijalankan pada $(date) ---" > "$LOG_FILE"
+print "Argumen yang diterima: $@" >> "$LOG_FILE"
+
+# Tentukan direktori konfigurasi Zsh
+# Jika ZDOTDIR diatur dan ada, gunakan itu. Jika tidak, gunakan HOME.
+local zsh_config_dir="${ZDOTDIR:-$HOME}"
+
+# Coba muat .zshenv
+if [[ -f "$zsh_config_dir/.zshenv" ]]; then
+    source "$zsh_config_dir/.zshenv"
+    print "Berhasil memuat '$zsh_config_dir.zshenv'" >> "$LOG_FILE"
+else
+    print "File '$zsh_config_dir.zshenv' tidak ditemukan" >> "$LOG_FILE"
+fi
+
+# Catat variabel penting
+print "Nilai PERL5LIB setelah source: $PERL5LIB" >> "$LOG_FILE"
+print "Path perl yang ditemukan oleh 'which': $(which perl)" >> "$LOG_FILE"
+
+print "--- Selesai debugging ---" >> "$LOG_FILE"
+
+# Jalankan perl yang sebenarnya (bisa dikomentari dulu jika hanya ingin tes logging)
+exec /usr/bin/perl "$@" 2>/dev/null

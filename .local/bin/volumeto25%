@@ -1,0 +1,7 @@
+#!/usr/bin/zsh
+
+volumeto25(){
+    wpctl set-volume @DEFAULT_SINK@ 25%
+}
+
+volumeto25

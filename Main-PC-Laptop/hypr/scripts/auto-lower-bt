@@ -1,0 +1,62 @@
+#!/usr/bin/zsh
+
+# --- KONFIGURASI ---
+TARGET_NAME="TWS V5.3"
+TARGET_VOL_VAL="0.25"  # 25%
+CHECK_INTERVAL=3
+# -------------------
+
+# Variabel State (Ingatan)
+# false = TWS belum tersambung / baru putus
+# true  = TWS sudah tersambung dan volume sudah diamankan
+IS_CONNECTED=false
+
+log_msg() {
+    print -P "%F{green}[AUTO-VOL]%f $1"
+}
+
+log_msg "Daemon Aktif. Menunggu: '$TARGET_NAME'..."
+
+while true; do
+    # 1. Cari ID Sink (Metode yang sudah terbukti berhasil di screenshotmu)
+    SINK_ID=$(wpctl status | grep "$TARGET_NAME" | grep "vol:" | grep -Eo '[0-9]+\.' | head -n 1 | tr -d '.')
+
+    # 2. Cek Status Koneksi
+    if [[ -n "$SINK_ID" ]]; then
+        # === KONDISI: TWS SEDANG TERHUBUNG ===
+
+        # Cek ingatan: Apakah ini koneksi baru?
+        if [[ "$IS_CONNECTED" == "false" ]]; then
+            log_msg "TWS Terdeteksi (ID: $SINK_ID). Mengecek volume awal..."
+
+            # Ambil volume saat ini
+            CURRENT_VOL=$(wpctl get-volume $SINK_ID 2>/dev/null | awk '{print $2}')
+
+            if [[ -n "$CURRENT_VOL" && "$CURRENT_VOL" > "$TARGET_VOL_VAL" ]]; then
+                log_msg "Volume awal tinggi ($CURRENT_VOL). Menurunkan ke $TARGET_VOL_VAL..."
+                wpctl set-volume $SINK_ID $TARGET_VOL_VAL
+                notify-send "Safety Ear" "Volume TWS diset ke 25%" -i audio-headphones
+            else
+                log_msg "Volume awal sudah aman ($CURRENT_VOL). Tidak ada tindakan."
+            fi
+
+            # TANDAI BAHWA KITA SUDAH MENANGANI SESI INI
+            IS_CONNECTED=true
+            log_msg "Sesi diamankan. Silakan atur volume sesuka hati."
+        fi
+
+        # Jika IS_CONNECTED sudah true, script akan diam saja (SKIP)
+        # membiarkan kamu menaikkan volume manual.
+
+    else
+        # === KONDISI: TWS TIDAK TERHUBUNG ===
+
+        # Jika sebelumnya terhubung, reset ingatan
+        if [[ "$IS_CONNECTED" == "true" ]]; then
+            log_msg "TWS Terputus. Mereset status..."
+            IS_CONNECTED=false
+        fi
+    fi
+
+    sleep $CHECK_INTERVAL
+done
