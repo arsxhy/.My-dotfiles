@@ -13,6 +13,7 @@
 @define-color sapphire #74c7ec;
 @define-color blue #89b4fa;
 @define-color lavender #b4befe;
+@define-color cyan #0DB9D7;
 
 @define-color text #cdd6f4;
 
@@ -230,7 +231,7 @@ slider {
 .control-center {
   background: @base;
   border-radius: 20px;
-  border: 2px solid @redpink;
+  border: 2px solid @cyan;
   margin: 0;
   padding: 8px 8px 0 8px;
 }

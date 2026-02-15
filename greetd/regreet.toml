@@ -28,10 +28,10 @@ cursor_theme_name = "Dracula-cursors"
 font_name = "Adwaita Sans 16"
 
 # Icon theme name
-icon_theme_name = "Dracula"
+icon_theme_name = "Tokyonight-Dark-Cyan"
 
 # GTK theme name
-theme_name = "Dracula"
+theme_name = "Tokyonight-Dark"
 
 [commands]
 # The command used to reboot the system

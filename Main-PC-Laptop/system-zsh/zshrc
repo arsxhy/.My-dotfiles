@@ -29,7 +29,8 @@ export PYTHONSTARTUP="$HOME/.pystartup"
 
 # My Aliases Config
 alias ff='fastfetch'
-alias ls='lsd -la1hF --color=auto'
+alias ls='lsd --color=auto'
+alias l='lsd -la1hF --color=auto'
 alias grep='grep --color=auto'
 alias ip='ip -color=auto'
 alias cp='cp -i'

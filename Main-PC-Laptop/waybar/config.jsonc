@@ -4,7 +4,7 @@
 	"height": 15, // Waybar height (to be removed for auto height)
 	// "width": 1280, // Waybar width
 	// "gtk-layer-shell": false,
-	// "reload_style_on_change": true,
+	"reload_style_on_change": true,
 	// Choose the order of the modules
 	"modules-left": [
 		"sway/mode",
@@ -136,18 +136,18 @@
 	"clock": {
 		"timezone": "Asia/Jakarta",
 		"format": " {:%A, %d %B %Y|%R}",
-		"format-alt": " {:%a %d %b :%V %H:%M}",
-		"tooltip-format": "<span color='#ee4863'><tt><small>{calendar}</small></tt></span>",
+		"format-alt": " {:%a %d %b %y|%H:%M}",
+		"tooltip-format": "<span color='#779FEE'><tt><small>{calendar}</small></tt></span>",
 		"calendar": {
 			"mode-mon-col": 4,
 			"weeks-pos": "left",
 			"on-scroll": 1,
 			"on-click-right": "mode",
 			"format": {
-				"months": "<span color='#ee2e24'><b>{}</b></span>",
+				"months": "<span color='#7ADFD9'><b>{}</b></span>",
 				"weeks": "<span color='#d9d8d8'><b>{}</b></span>",
-				"weekdays": "<span color='#f35cc8'><b>{}</b></span>",
-				"today": "<span color='#f35cc8'><b><u>{}</u></b></span>"
+				"weekdays": "<span color='#0DB9D7'><b>{}</b></span>",
+				"today": "<span color='#0DB9D7'><b><u>{}</u></b></span>"
 			}
 		},
 		"actions": {

@@ -1,69 +1,56 @@
 window {
   margin: 0px;
-  border: 1px solid #bd93f9;
-  background-color: #282a36;
+  border: 1px solid #0db9d7;
+  background-color: #1e202e;
 }
-
 #input {
   margin: 5px;
   border: none;
-  color: #f8f8f2;
-  background-color: #44475a;
+  color: #c0cafc;
+  background-color: #313353;
 }
-
 #inner-box {
   margin: 5px;
   border: none;
-  background-color: #282a36;
+  background-color: #1e202e;
 }
-
 #outer-box {
   margin: 5px;
   border: none;
-  background-color: #282a36;
+  background-color: #1e202e;
 }
-
 #scroll {
   margin: 0px;
   border: none;
 }
-
 #text {
   margin: 5px;
   border: none;
-  color: #f8f8f2;
+  color: #c0cafc;
 }
-
 #entry.activatable #text {
-  color: #282a36;
+  color: #1e202e;
 }
-
 #entry > * {
-  color: #f8f8f2;
+  color: #c0cafc;
 }
-
 #entry:selected {
-  background-color: #44475a;
+  background-color: #313353;
 }
-
 #entry:selected #text {
   font-weight: bold;
 }
-
 #expander-box {
-  background-color: #778899;
+  background-color: #444a69;
   padding: 5px;
 }
-
 #expander-box #entry #text {
-  color: #f8f8f2;
+  color: #c0cafc;
   font-weight: lighter;
 }
-
+#expander-box #entry:selected {
+  background-color: #313353;
+}
 #expander-box #entry:selected #text {
   font-weight: bold;
-}
-
-#expander-box #entry:selected {
-  background-color: #44475a;
 }

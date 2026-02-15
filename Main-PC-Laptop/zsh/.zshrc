@@ -7,6 +7,10 @@ fastfetch
 # Evaluate Custom Perl Local::Lib
 eval "$(perl -I$PERL_LOCAL_LIB_ROOT/lib/perl5 -Mlocal::lib=$PERL_LOCAL_LIB_ROOT)"
 
+# Evaluate SSH Agent
+eval $(keychain --eval --quiet id_ed25519)
+eval $(keychain --eval --quiet id_rsa_test)
+
 typeset -U path PATH
 typeset -U fpath FPATH
 fpath=($ZDOTDIR/functions $fpath)
@@ -37,10 +41,15 @@ if [ -e $ZDOTDIR/completions/warp-cli ]; then
     . $ZDOTDIR/completions/warp-cli
 fi
 
-# nvm (node version manager) init.sh
-if [ -e /usr/share/nvm/init-nvm.sh ]; then
-    . /usr/share/nvm/init-nvm.sh
+# Railwayapp CLI Completions
+if [ -e $ZDOTDIR/completions/railway ]; then
+    . $ZDOTDIR/completions/railway
 fi
+
+# nvm (node version manager) init.sh
+# if [ -e /usr/share/nvm/init-nvm.sh ]; then
+#     . /usr/share/nvm/init-nvm.sh
+# fi
 
 # Remembering recent directories
 # eval "$(zoxide init zsh)"
@@ -51,10 +60,14 @@ eval "$(rbenv init -)"
 # # bat completion zsh
 # eval "$(bat --completion zsh)"
 
-# dirscolors colorscheme (Dracula)
+# dirscolors colorscheme (Tokyonight)
 # Atur dircolors jika file tersedia
 if [ -r ~/.dircolors ]; then
     eval "$(dircolors ~/.dircolors)"
+fi
+
+if [ -r $ZDOTDIR/fzf/themes/tokyonight_storm.sh ]; then
+    source $ZDOTDIR/fzf/themes/tokyonight_storm.sh
 fi
 
 # My Function
@@ -83,7 +96,7 @@ alias ip='ip -color=auto'
 alias cp='cp -i'
 alias rm='rm -i'
 alias mv='mv -i'
-alias lsblk='lsblk --tree -fs -o NAME,MAJ:MIN,FSTYPE,PARTUUID,LABEL,SIZE,RO,TYPE,MOUNTPOINTS'
+alias lsblk='lsblk --tree -fs -o NAME,MAJ:MIN,FSTYPE,FSVER,PARTUUID,LABEL,SIZE,RO,TYPE,MOUNTPOINTS'
 alias sudovim='sudo -E -s nvim -u "'"$HOME"'/.config/nvim/init.lua"'
 alias tp-lua='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-Lua'
 alias tp-py='cd ~/Documents/Belajar-Otodidak/Belajar\ Programming/Belajar-Python3'

@@ -49,6 +49,13 @@ framerate = 60
 # only check for input once per second. Cava will wake up once input is detected. 0 = disable.
 ; sleep_timer = 0
 
+; Optional: Adjust other settings if needed, e.g., for bar appearance
+; bars = 8
+; bar_width = 2
+; bar_spacing = 1
+; sensitivity = 100
+; lower_cutoff_freq = 50
+; higher_cutoff_freq = 10000
 
 [input]
 
@@ -239,16 +246,32 @@ orientation = bottom
 ; gradient_color_7 = '#cc5933'
 ; gradient_color_8 = '#cc3333'
 
+# Dracula Colorscheme
+; gradient = 1
+
+; gradient_color_1 = '#8BE9FD'
+; gradient_color_2 = '#9AEDFE'
+; gradient_color_3 = '#CAA9FA'
+; gradient_color_4 = '#BD93F9'
+; gradient_color_5 = '#FF92D0'
+; gradient_color_6 = '#FF79C6'
+; gradient_color_7 = '#FF6E67'
+; gradient_color_8 = '#FF5555'
+
+; Tokyonight Storm Colorscheme for CAVA
+
+; Keep gradient enabled for smooth color transitions
 gradient = 1
 
-gradient_color_1 = '#8BE9FD'
-gradient_color_2 = '#9AEDFE'
-gradient_color_3 = '#CAA9FA'
-gradient_color_4 = '#BD93F9'
-gradient_color_5 = '#FF92D0'
-gradient_color_6 = '#FF79C6'
-gradient_color_7 = '#FF6E67'
-gradient_color_8 = '#FF5555'
+; Gradient colors based on Tokyonight Storm palette
+gradient_color_1 = '#3d59a1'
+gradient_color_2 = '#7aa2f7'
+gradient_color_3 = '#2ac3de'
+gradient_color_4 = '#7dcfff'
+gradient_color_5 = '#9d7cd8'
+gradient_color_6 = '#bb9af7'
+gradient_color_7 = '#c0caf5'
+gradient_color_8 = '#f7768e'
 
 
 [smoothing]

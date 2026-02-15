@@ -1,53 +1,50 @@
+/* Tokyonight Storm – Waybar */
+
 * {
   border: none;
   border-radius: 0;
-  font-family: "Adwaita Sans", "Font Awesome 7 Free";
+  font-family: "Adwaita Sans", "Font Awesome 7 Free", "Font Awesome 7 Brands";
   font-size: 13px;
   box-shadow: none;
   text-shadow: none;
   transition-duration: 0s;
 }
 
+/* ───────────────────────────────── Window ─────────────────────────────── */
 window#waybar {
-  color: rgba(238, 72, 99, 1);
-  background-color: rgba(40, 27, 50, 0.8);
-  border-bottom: 2px solid rgba(238, 72, 99, 1);
-  padding: 0px 5px;
-  margin: 0px 5px;
+  color: rgba(13, 185, 215, 1); /* foreground #0DB9D7 */
+  background-color: rgba(32, 33, 51, 0.8); /* bg #202133 @80 % */
+  border-bottom: 2px solid rgba(15, 166, 194, 1); /* accent #0FA6C2 */
+  padding: 0 5px;
+  margin: 0 5px;
 }
-
 window#waybar.solo {
-  color: rgba(238, 72, 99, 1);
+  color: rgba(13, 185, 215, 1);
 }
 
+/* ──────────────────────────────── Workspaces ──────────────────────────── */
 #workspaces {
   margin: 0 5px;
 }
-
 #custom-scratchpad {
-  margin: 0px 5px;
-  padding: 0px 5px;
+  margin: 0 5px;
+  padding: 0 5px;
 }
 
 #workspaces button {
-  padding: 0 5px;
+  padding: 6px 5px;
   font-size: 18px;
-  padding: 6px;
-  color: rgba(238, 72, 99, 1);
+  color: rgba(13, 185, 215, 1); /* normal */
 }
-
-#workspaces button.active {
-  color: rgba(243, 92, 200, 1);
-}
-
+#workspaces button.active,
 #workspaces button.visible {
-  color: rgba(243, 92, 200, 1);
+  color: rgba(136, 159, 243, 1); /* blue-highlight */
 }
-
 #workspaces button.urgent {
-  color: rgba(33, 164, 223, 1);
-}
+  color: rgba(238, 46, 36, 1);
+} /* cyan */
 
+/* ──────────────────────────── Common Modules ─────────────────────────── */
 #mode,
 #gamemode,
 #battery,
@@ -66,57 +63,48 @@ window#waybar.solo {
 #custom-hyprpicker,
 #custom-hyprshot,
 #custom-pacman,
-#backlight {
-  margin: 0px 6px 0px 10px;
-  /*    min-width: 30px;*/
-}
-#pulseaudio-slider slider {
-  min-height: 0px;
-  min-width: 0px;
-  opacity: 0;
-  background-image: none;
-  border: none;
-  box-shadow: none;
+#backlight,
+#clock {
+  margin: 0 6px 0 10px;
 }
 
+/* ──────────────────────────── PulseAudio Slider ──────────────────────── */
+#pulseaudio-slider slider {
+  /* hide grab-handle */
+  min-height: 0;
+  min-width: 0;
+  opacity: 0;
+  background: none;
+}
 #pulseaudio-slider trough {
   min-height: 10px;
   min-width: 100px;
   border-radius: 5px;
-  border-color: lightpink;
-  background-color: darkslategray;
+  border: 1px solid #bd93f9; /* accent border */
+  background-color: #3b4261; /* dark surface */
 }
-
 #pulseaudio-slider highlight {
   min-width: 10px;
   border-radius: 5px;
-  background-color: rgba(238, 72, 99, 1);
+  background-color: rgba(189, 147, 249, 1); /* accent fill */
 }
 
-#clock {
-  margin: 0px 6px 0px 10px;
-}
-
+/* ───────────────────────────── Battery States ────────────────────────── */
 #battery.warning {
   color: rgba(255, 210, 4, 1);
-}
-
+} /* yellow  */
 #battery.critical {
   color: rgba(238, 46, 36, 1);
-}
-
+} /* red     */
 #battery.charging {
   color: rgba(217, 216, 216, 1);
-}
+} /* gray-white */
 
-#bluetooth.disabled {
-  color: rgba(128, 128, 128, 1);
-}
-
+/* ───────────────────────────── Bluetooth States ──────────────────────── */
+#bluetooth.disabled,
 #bluetooth.off {
   color: rgba(128, 128, 128, 1);
 }
-
 #bluetooth.connected {
   color: rgba(115, 186, 37, 1);
-}
+} /* green  */

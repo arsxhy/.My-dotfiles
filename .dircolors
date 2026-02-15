@@ -1,23 +1,22 @@
-
+# Tokyonight Storm based dircolors
+# Maintains comments for clarity
 # Configuration file for dircolors, a utility to help you set the
 # LS_COLORS environment variable used by GNU ls with the --color option.
-
 # Copyright (C) 1996-2025 Free Software Foundation, Inc.
 # Copying and distribution of this file, with or without modification,
 # are permitted provided the copyright notice and this notice are preserved.
-
 # ===================================================================
 # Terminal filters
 # ===================================================================
 COLORTERM ?*
 TERM Eterm
 TERM ansi
-TERM *color*
-TERM con[0-9]*x[0-9]*
+TERM color
+TERM con[0-9]x[0-9]
 TERM cons25
 TERM console
 TERM cygwin
-TERM *direct*
+TERM direct
 TERM dtterm
 TERM gnome
 TERM hurd
@@ -36,7 +35,6 @@ TERM tmux*
 TERM vt48;2;98;114;164
 TERM vt220
 TERM xterm*
-
 # ===================================================================
 # Basic file attributes (Tokyo Night Palette)
 # ===================================================================
@@ -48,45 +46,43 @@ TERM xterm*
 # 48;2;R;G;B=background
 
 RESET 0
-DIR 01;38;2;122;162;247  # Direktori (Biru)
-LINK 01;38;2;125;207;255 # Symbolic Link (Cyan)
+DIR 01;38;2;122;162;247 # Direktori (Biru) → tokyonight.yml directory foreground: "#7aa2f7"
+LINK 01;38;2;125;207;255 # Symbolic Link (Cyan) → tokyonight.yml symlink foreground: "#2ac3de"
 MULTIHARDLINK 00
-FIFO 48;2;36;40;59;38;2;224;175;104  # Pipa (Kuning di background gelap)
-SOCK 01;38;2;187;154;247 # Socket (Ungu/Magenta)
-DOOR 01;38;2;187;154;247 # Door (Ungu/Magenta)
-BLK 48;2;36;40;59;38;2;224;175;104;01 # Block device
-CHR 48;2;36;40;59;38;2;224;175;104;01 # Character device
-ORPHAN 48;2;36;40;59;38;2;247;118;142;01 # Symlink rusak (Merah di background gelap)
+FIFO 48;2;36;40;59;38;2;224;175;104 # Pipa (Kuning di background gelap) → tokyonight.yml pipe foreground: "#414868" (adjusted)
+SOCK 01;38;2;187;154;247 # Socket (Ungu/Magenta) → tokyonight.yml socket foreground: "#414868" (adjusted to purple)
+DOOR 01;38;2;187;154;247 # Door (Ungu/Magenta) → tokyonight.yml special foreground: "#9d7cd8"
+BLK 48;2;36;40;59;38;2;224;175;104;01 # Block device → tokyonight.yml block_device foreground: "#e0af68"
+CHR 48;2;36;40;59;38;2;224;175;104;01 # Character device → tokyonight.yml char_device foreground: "#e0af68"
+ORPHAN 48;2;36;40;59;38;2;247;118;142;01 # Symlink rusak (Merah di background gelap) → tokyonight.yml broken_symlink foreground: "#ff007c"
 MISSING 00
-SETUID 38;2;248;248;242;48;2;247;118;142   # Putih di background Merah
-SETGID 38;2;36;40;59;48;2;224;175;104  # Hitam di background Kuning
+SETUID 38;2;248;248;242;48;2;247;118;142 # Putih di background Merah → tokyonight.yml special_user_file foreground: "#ff007c"
+SETGID 38;2;36;40;59;48;2;224;175;104 # Hitam di background Kuning → tokyonight.yml group_root foreground: "#bb9af7" (adjusted)
 CAPABILITY 00
-STICKY_OTHER_WRITABLE 38;2;36;40;59;48;2;158;206;106 # Hitam di background Hijau
-OTHER_WRITABLE 38;2;122;162;247;48;2;158;206;106  # Biru di background Hijau
-STICKY 38;2;248;248;242;48;2;122;162;247   # Putih di background Biru
-EXEC 01;38;2;158;206;106   # File eksekusi (Hijau)
-
+STICKY_OTHER_WRITABLE 38;2;36;40;59;48;2;158;206;106 # Hitam di background Hijau → tokyonight.yml group_write foreground: "#ff9e64" (adjusted)
+OTHER_WRITABLE 38;2;122;162;247;48;2;158;206;106 # Biru di background Hijau → tokyonight.yml other_write foreground: "#ff007c" (adjusted)
+STICKY 38;2;248;248;242;48;2;122;162;247 # Putih di background Biru → tokyonight.yml other_read foreground: "#2ac3de" (adjusted)
+EXEC 01;38;2;158;206;106 # File eksekusi (Hijau) → tokyonight.yml executable foreground: "#9ece6a"
 # ===================================================================
 # File extension attributes
 # ===================================================================
-
 # Executables
-.cmd 01;38;2;158;206;106 # executables (Hijau)
+.cmd 01;38;2;158;206;106 # executables (Hijau) → tokyonight.yml executable foreground: "#9ece6a"
 .exe 01;38;2;158;206;106
 .com 01;38;2;158;206;106
 .btm 01;38;2;158;206;106
 .bat 01;38;2;158;206;106
-.sh  01;38;2;158;206;106
+.sh 01;38;2;158;206;106
 .csh 01;38;2;158;206;106
 
 # Archives or compressed (Kuning/Oranye)
-.7z  01;38;2;224;175;104
+.7z 01;38;2;224;175;104 # → tokyonight.yml compressed foreground: "#ff9e64"
 .ace 01;38;2;224;175;104
 .alz 01;38;2;224;175;104
 .apk 01;38;2;224;175;104
 .arc 01;38;2;224;175;104
 .arj 01;38;2;224;175;104
-.bz  01;38;2;224;175;104
+.bz 01;38;2;224;175;104
 .bz2 01;38;2;224;175;104
 .cab 01;38;2;224;175;104
 .cpio 01;38;2;224;175;104
@@ -94,15 +90,15 @@ EXEC 01;38;2;158;206;106   # File eksekusi (Hijau)
 .deb 01;38;2;224;175;104
 .drpm 01;38;2;224;175;104
 .dwm 01;38;2;224;175;104
-.dz  01;38;2;224;175;104
+.dz 01;38;2;224;175;104
 .ear 01;38;2;224;175;104
 .egg 01;38;2;224;175;104
 .esd 01;38;2;224;175;104
-.gz  01;38;2;224;175;104
+.gz 01;38;2;224;175;104
 .jar 01;38;2;224;175;104
 .lha 01;38;2;224;175;104
 .lrz 01;38;2;224;175;104
-.lz  01;38;2;224;175;104
+.lz 01;38;2;224;175;104
 .lz4 01;38;2;224;175;104
 .lzh 01;38;2;224;175;104
 .lzma 01;38;2;224;175;104
@@ -110,7 +106,7 @@ EXEC 01;38;2;158;206;106   # File eksekusi (Hijau)
 .pyz 01;38;2;224;175;104
 .rar 01;38;2;224;175;104
 .rpm 01;38;2;224;175;104
-.rz  01;38;2;224;175;104
+.rz 01;38;2;224;175;104
 .sar 01;38;2;224;175;104
 .swm 01;38;2;224;175;104
 .t7z 01;38;2;224;175;104
@@ -121,21 +117,21 @@ EXEC 01;38;2;158;206;106   # File eksekusi (Hijau)
 .tgz 01;38;2;224;175;104
 .tlz 01;38;2;224;175;104
 .txz 01;38;2;224;175;104
-.tz  01;38;2;224;175;104
+.tz 01;38;2;224;175;104
 .tzo 01;38;2;224;175;104
 .tzst 01;38;2;224;175;104
 .udeb 01;38;2;224;175;104
 .war 01;38;2;224;175;104
 .whl 01;38;2;224;175;104
 .wim 01;38;2;224;175;104
-.xz  01;38;2;224;175;104
-.z   01;38;2;224;175;104
+.xz 01;38;2;224;175;104
+.z 01;38;2;224;175;104
 .zip 01;38;2;224;175;104
 .zoo 01;38;2;224;175;104
 .zst 01;38;2;224;175;104
 
 # Image formats (Ungu/Magenta)
-.avif 01;38;2;187;154;247
+.avif 01;38;2;187;154;247 # → tokyonight.yml image foreground: "#89ddff" (adjusted)
 .jpg 01;38;2;187;154;247
 .jpeg 01;38;2;187;154;247
 .jxl 01;38;2;187;154;247
@@ -168,11 +164,11 @@ EXEC 01;38;2;158;206;106   # File eksekusi (Hijau)
 .m4v 01;38;2;187;154;247
 .mp4v 01;38;2;187;154;247
 .vob 01;38;2;187;154;247
-.qt  01;38;2;187;154;247
+.qt 01;38;2;187;154;247
 .nuv 01;38;2;187;154;247
 .wmv 01;38;2;187;154;247
 .asf 01;38;2;187;154;247
-.rm  01;38;2;187;154;247
+.rm 01;38;2;187;154;247
 .rmvb 01;38;2;187;154;247
 .flc 01;38;2;187;154;247
 .avi 01;38;2;187;154;247
@@ -189,7 +185,7 @@ EXEC 01;38;2;158;206;106   # File eksekusi (Hijau)
 .ogx 01;38;2;187;154;247
 
 # audio formats (Merah)
-.aac 00;38;2;247;118;142
+.aac 00;38;2;247;118;142 # → tokyonight.yml music foreground: "#73daca" (adjusted)
 .au 00;38;2;247;118;142
 .flac 00;38;2;247;118;142
 .m4a 00;38;2;247;118;142
@@ -207,7 +203,7 @@ EXEC 01;38;2;158;206;106   # File eksekusi (Hijau)
 .xspf 00;38;2;247;118;142
 
 # backup files (Abu-abu/Komentar)
-*~ 00;38;2;92;99;112
+*~ 00;38;2;92;99;112 # → tokyonight.yml ignored foreground: "#545c7e"
 *# 00;38;2;92;99;112
 .bak 00;38;2;92;99;112
 .crdownload 00;38;2;92;99;112

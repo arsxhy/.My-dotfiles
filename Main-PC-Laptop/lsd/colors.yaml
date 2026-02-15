@@ -1,30 +1,29 @@
-#  Dracula
-#  ┬  ┌─┐┌┬┐
-#  │  └─┐ ││
-#  ┴─┘└─┘─┴┘
-# urrick hunt
+# Tokyonight Storm for LSD
+# Based on Tokyonight Storm palette: Background #1e2030, Foreground #c0caf5, Blue #7aa2f7, Cyan #7dcfff, Green #9ece6a, Yellow #e0af68, Red #f7768e, Magenta #bb9af7, Purple #9d7cd8
+# Values are ANSI 256-color codes approximating the palette
 
-user: 159 # cyan
-group: 231 # foreground
+user: 111 # cyan (close to #7dcfff)
+group: 189 # foreground (close to #c0caf5)
 permission:
-  read: 183 # blue
-  write: 212 # magenta
-  exec: 159 # cyan
-  exec-sticky: 159 # cyan
-  no-access: 210 # red
+  read: 105 # blue (close to #7aa2f7)
+  write: 177 # magenta (close to #bb9af7)
+  exec: 111 # cyan (close to #7dcfff)
+  exec-sticky: 111 # cyan (close to #7dcfff)
+  no-access: 168 # red (close to #f7768e)
 date:
-  hour-old: 146 # comment 20% lighter
-  day-old: 103 # comment
-  older: 60 # current line
+  hour-old: 146 # comment 20% lighter (close to grayish #565f89, lighter)
+  day-old: 103 # comment (close to #565f89)
+  older: 60 # current line (close to #565f89)
 size:
-  none: 60 # current line
-  small: 120 # green
-  medium: 215 # orange
-  large: 210 # red
+  none: 60 # current line (close to #565f89)
+  small: 148 # green (close to #9ece6a)
+  medium: 179 # orange/yellow (close to #e0af68)
+  large: 168 # red (close to #f7768e)
 inode:
-  valid: 231 # foreground
-  invalid: 210 # red
+  valid: 189 # foreground (close to #c0caf5)
+  invalid: 168 # red (close to #f7768e)
 links:
-  valid: 159 # cyan
-  invalid: 210 # red
-tree-edge: 183 # blue
+  valid: 111 # cyan (close to #7dcfff)
+  invalid: 168 # red (close to #f7768e)
+tree-edge: 105 # blue (close to #7aa2f7)
+

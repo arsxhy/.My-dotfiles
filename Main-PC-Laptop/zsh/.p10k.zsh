@@ -192,7 +192,7 @@
 
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color.
-  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=7
+  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=254
   typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=26
   # Custom icon.
   typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=%B$'\uF303'
@@ -1103,7 +1103,7 @@
 
   ##############[ nvm: node.js version from nvm (https://github.com/nvm-sh/nvm) ]###############
   # Nvm color.
-  typeset -g POWERLEVEL9K_NVM_FOREGROUND=7
+  typeset -g POWERLEVEL9K_NVM_FOREGROUND=254
   typeset -g POWERLEVEL9K_NVM_BACKGROUND=41
   # If set to false, hide node version if it's the same as default:
   # $(nvm version current) == $(nvm version default).
@@ -1126,7 +1126,7 @@
 
   ##############################[ node_version: node.js version ]###############################
   # Node version color.
-  typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=7
+  typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=8
   typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND=2
   # Show node version only when in a directory tree containing package.json.
   typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=true
@@ -1171,8 +1171,8 @@
 
   ##########[ laravel_version: laravel php framework version (https://laravel.com/) ]###########
   # Laravel version color.
-  typeset -g POWERLEVEL9K_LARAVEL_VERSION_FOREGROUND=1
-  typeset -g POWERLEVEL9K_LARAVEL_VERSION_BACKGROUND=7
+  typeset -g POWERLEVEL9K_LARAVEL_VERSION_FOREGROUND=017
+  typeset -g POWERLEVEL9K_LARAVEL_VERSION_BACKGROUND=015
   # Custom icon.
   # typeset -g POWERLEVEL9K_LARAVEL_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
@@ -1758,7 +1758,7 @@
 
   ####################################[ time: current time ]####################################
   # Current time color.
-  typeset -g POWERLEVEL9K_TIME_FOREGROUND=7
+  typeset -g POWERLEVEL9K_TIME_FOREGROUND=254
   typeset -g POWERLEVEL9K_TIME_BACKGROUND=26
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'

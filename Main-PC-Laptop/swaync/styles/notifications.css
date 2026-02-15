@@ -2,6 +2,7 @@
 @define-color flamingo #f2cdcd;
 @define-color pink #f5c2e7;
 @define-color mauve #cba6f7;
+@defind-color cyan #0DB9D7;
 @define-color red #f38ba8;
 @define-color maroon #eba0ac;
 @define-color redpink #EE4863;
@@ -43,7 +44,7 @@
 .floating-notifications.background .notification-row .notification-background {
   background: alpha(#000000, 0.05);
   border-radius: 20px;
-  border: 2px solid @redpink;
+  border: 2px solid @cyan;
   margin: 0;
   padding: 8px 8px 0 8px;
 }
@@ -60,7 +61,7 @@
   .notification-row
   .notification-background
   .notification.critical {
-  border: 2px solid @red;
+  border: 2px solid @cyan;
 }
 
 .floating-notifications.background
